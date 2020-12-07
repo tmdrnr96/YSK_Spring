@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!--  Root Context: 객체를 만들기 위한 객체이자 참조 파일!-->
+	
+	<!--객체 생성시 싱글톤으로 자동으로 생성된다..  -->
+	
+	<!-- 스프링에서 사용할 객체를 생성하는 영역(new로 만드는 객체를 모두 여기서 만든다.)  -->
+	<!-- 스프링에서는 객체를 bean이라고 부른다. -->
+	<!-- 일반적으로 자바에서 객체를 만든다면 PersonVO p1 = new PersonVO()..   -->
+	<!-- 스프링에서는 아래와 같이 만든다. -->
+	<!-- id : 객체명  class : 객체 생성 (new PersonVO()와 같다.)-->
+	<!-- web.xml -> root-context -> PersonVO p1 = new PersonVO()(메모리에 할당) -> 객체 생성! --> 
+	<bean id = "p1" class = "vo.PersonVO">
+		<!-- p1.setName("홍길동")  -->
+		<!--name이라는 변수에 "홍길동"이라는 값을 넣는다.  -->
+		<!--name의 변수가 VO에 있는 setter의 이름이 다르면 오류..  -->
+		<property name="name" value="홍길동"/>
+		<property name="age" value="20"/>
+		<property name="tel" value ="010-111-1111"/>
+		<!-- 위와 같이 setter를 참조하여 값을 집어 넣는 방식을 SI(Setter Injection)라고 한다.  -->	
+	</bean>
+		
+	<!-- PersonVO p2 = new Person("홀길동",33,"010-111-1111"); -->	
+	<bean id ="p2" class="vo.PersonVO">
+		<!--constructor-arg : 생성자 파라미터  (파라미터는 순서대로 넣어준다.)-->
+		<constructor-arg value = "박길동"/>
+		<constructor-arg value = "33"/>
+		<constructor-arg value = "010-222-2222"/>		
+		<!-- 위와 같은 방식을 CI(Construct Injection)이라고 한다. -->
+	</bean>	
+		
+		<!-- 스프링빈은 기본값으로 객체를 싱글톤 형식으로 만들기 때문에  
+			필요에 따라 객체가 그때그때 생성될 수 있도록 처리해보자!! -->
+			
+		<!--String nameBean = new String("오길동");  -->
+		<bean id = "nameBean" class ="java.lang.String">
+			<constructor-arg value = "오길동"/>
+		</bean>	
+		<!--spring에서는 기본자료형을 넣지 못한다...(래퍼클래스로 넣는다..(java.lang.Integer))  -->	
+		
+		<!--정수를 담을 수 있는 클래스  -->
+		<!-- Integer ageBean = new Integer(33);  -->
+		<bean id = "ageBean" class = "java.lang.Integer">
+			<constructor-arg value = "33"/>
+		</bean>	
+		
+		<bean id = "telBean" class = "java.lang.String">
+			<constructor-arg value = "010-111-1111"/>
+		</bean>	
+		
+		<!-- 외부에서 만들어 놓은 Bean을 참조해서 쓴다.  -->
+		<bean id = "p3" class ="vo.PersonVO">
+		
+		<!--외부의 bean을 참조해서 사용하는 구조를 DI(Dependency Injection: 의존성 주입(외부에서 참조))라고 한다.  -->
+			<constructor-arg ref="nameBean"/>
+			<constructor-arg ref="ageBean"/>
+			<constructor-arg ref="telBean"/>		
+		</bean>
+		
+		<!--scope="singleton" 디폴트  -->
+		<!--scope="prototype" 로 지정되어 있으면 싱글톤으로 생성되지 않는다.  -->
+		<bean id ="p4" class ="vo.PersonVO" scope="prototype">
+		<!--PersonVO를 생성하고 setter에 값을 넣는다...  -->
+			<property name="name" ref="nameBean"/>
+			<property name="age" ref="ageBean"/>
+			<property name="tel" ref="telBean"/>
+			<!--DI(Dependency Injection)을 사용! 만들어 놓은 것을 사용한다.-->
+		</bean>
+		
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+

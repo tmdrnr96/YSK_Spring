@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!--Bean에서 Set만들기  -->
+	<bean id ="mySetBean" class = "ex.MySet">
+		<property name="set">
+			
+			<!--new set과 같다.  -->
+			<set>
+				<!-- hs = new HashSet();  
+					 hs.add("서울"); 같은 코드-->
+					 <value>서울</value>
+					 <value>인천</value>
+					 <value>광주</value>
+					 <value>부산</value>
+					 <value>대구</value>
+					 <value>대전</value>			
+			</set>
+			
+			<!--ex.MySet에 setSet에 위의 6개의 정보가 들어간다.  -->
+		</property>
+	</bean>
+	
+	<bean id = "myListBean" class="ex.MyList">
+		<property name="list">
+			<list>
+				<value>사과</value>
+				<value>배</value>
+				<value>바나나</value>
+				<value>감</value>
+				<value>오렌지</value>										
+			</list>			
+		</property>
+	</bean>
+	
+	<bean id = "myMapBean" class = "ex.MyMap">
+		<property name="map">
+			<map>
+				<entry key="hong" value ="20"/>
+				<entry key="kim" value ="25"/>
+				<entry key="park" value ="27"/>
+			</map>
+		</property>
+	
+	</bean>
+	
+	
+</beans>

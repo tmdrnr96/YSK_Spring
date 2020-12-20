@@ -42,7 +42,7 @@
 		#join a:hover{text-decoration: underline;}	
 		
 		/* 버튼 hover 효과  */	
-		input[type=button]:hover{background-color:black; color: white;}
+		input[type=button]:hover{background-color:black;}
 			
 		</style>
 		<script type="text/javascript">
@@ -81,7 +81,7 @@
 					</tr>
 					
 					<tr>
-						<td class = "buttons" align = "center">
+						<td align = "center">
 							<input type = "button" class = "btn_log" value = "Sign up" onclick = "sign(this.form);" >					
 						</td>
 					</tr>	

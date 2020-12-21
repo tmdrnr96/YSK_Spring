@@ -29,8 +29,8 @@
 	<context:annotation-config/>
 	
 	<!-- 컨트롤러 수동생성 -->
- 	<beans:bean class = "controller.BankController">		
-		<!--  <beans:property name="board_dao" ref = "board_daoBean"/>  -->
+ 	<beans:bean class = "controller.Bank_login_Controller">		
+		<beans:property name="bank_dao" ref = "bank_daoBean"/> 
 	</beans:bean>
 	
 	

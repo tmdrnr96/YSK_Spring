@@ -5,46 +5,10 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Sign in to Personal Online Banking</title>
-		<style type="text/css">
 		
-		#title{width : 300px; margin : 20px 0;}
+		<!-- bank_login_form.css 스타일 시트 참조  -->
+		<link rel = "stylesheet" href="${pageContext.request.contextPath}/resources/css/bank_login_form.css">
 		
-		#table{ margin:50px auto;
-				width: 1000px; 
-				height : 190px;
-				text-align: center;}
-				
-		.btn_log {width : 260px;
-				  height : 40px;
-				  margin : 10px 0;
-				  font-size: 15px;
-				  font-weight: bold;
-				  border:0; 
-				  outline:0;
-				  background-color: grey; 
-				  color : white;}
-
-		.log{width: 250px;
-			height: 25px;}
-		
-		#find{margin-top: 80px;
-			  margin-bottom: 25px;}
-		
-		.j{color: red;}
-		
-		.f{margin : 0 10px;  color: grey;}	  
-
-			
-		a{text-decoration: none;}
-		
-				
-		#find a:hover{color: black; text-decoration: underline;}		
-		#join a:hover{text-decoration: underline;}	
-		
-		/* 버튼 hover 효과  */	
-		input[type=button]:hover{background-color:black;}
-			
-		</style>
 		<script type="text/javascript">
 		function sign(f) {
 			

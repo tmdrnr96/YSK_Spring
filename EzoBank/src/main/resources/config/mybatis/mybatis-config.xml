@@ -8,12 +8,12 @@
 		<setting name="defaultExecutorType" value="REUSE" />
 	</settings>
 	
-	<!-- <typeAliases>
+	<typeAliases>
 		<typeAlias type="vo.BankVO" alias="bank"/>
-	</typeAliases> -->
+	</typeAliases>
 	
 	<!-- dept.xml 맵퍼를 참조한다. -->
-	<!-- <mappers>
+	<mappers>
 		<mapper resource="config/mybatis/mapper/bank.xml"/>
-	</mappers> -->
+	</mappers>
 </configuration>

@@ -2,8 +2,28 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="">
-
+<mapper namespace="bank">
+	
+	<!--아이디 중복 체크  -->
+	<select id="bank_id_check" parameterType="java.lang.String" resultType="vo.BankVO">
+		select * from bank where id=#{id, jdbcType=VARCHAR}
+	</select>
+	
+	<insert id="bank_account_insert" parameterType="vo.BankVO">
+		insert into bank values(bank_seq_idx, 
+							    #{name}, 
+							    #{ssn}, 
+							    #{tel}, 
+							    #{email}, 
+							    #{addr}, 
+							    #{id},
+							    #{pwd},
+							    #{account},
+							    0,
+							    #{ip},
+							    sysdate
+							    )
+	</insert>
 </mapper>
 
 

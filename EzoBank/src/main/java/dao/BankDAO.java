@@ -23,4 +23,12 @@ public class BankDAO {
 		int res = sqlSession.insert("bank.bank_account_insert",vo);		
 		return res;
 	}
+	
+	//회원 아이디 찾기
+	public BankVO find_id_selectOne(String ssn) {
+		
+		BankVO vo = sqlSession.selectOne("bank.bank_find_id",ssn);
+		
+		return vo;
+	}
 }

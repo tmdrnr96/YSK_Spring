@@ -8,7 +8,8 @@
 		
 		<!-- bank_login_form.css 스타일 시트 참조  -->
 		<link rel = "stylesheet" href="${pageContext.request.contextPath}/resources/css/bank_login_form.css">
-		
+		<!--제이쿼리 적용..?  -->
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
 		<script type="text/javascript">
 		function sign(f) {
 			
@@ -33,14 +34,13 @@
 		
 		//아이디 찾기
 		function f_id() {
+					//크롬에서는 window지원이 잘 안됨..
+					//창크기 고정 필요..
 					
-			//window.open..생성 시 resizable속성을 설정해줘야 창 크기 조절 가능
-			var url = 'forgot_id.do'; 
-			var mywindow = window.open(url,'ID_Search','resizable');
-			mywindow.resizeTo(500,500);
-			mywindow.moveTo(300,500);
-			alert("11");
-		}
+			var url = 'find_id_form.do'; 
+			window.open(url, "_blank","width=500, height=250, left=400, top=190, scrollbars=no, resizable=no");
+		
+		}	
 		
 		
 		</script>

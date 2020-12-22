@@ -72,10 +72,8 @@ public class Bank_login_Controller {
 		
 		if(bankvo == null) {
 			res = "yes";
-		}
-		
-		return res;
-		
+		}		
+		return res;	
 	}
 	
 	@Autowired
@@ -116,14 +114,26 @@ public class Bank_login_Controller {
 		return result;		
 	}
 	
-	@RequestMapping("/forgot_id.do")
+	@RequestMapping("/find_id_form.do")
 	public String forgot_id() {
 		
-		return "";
+		return WEB_PATH + "bank_find_id_form.jsp";
 	}
 	
-	
-	
+	@RequestMapping("find_id.do")
+	@ResponseBody
+	public String find_id(String name, String ssn) {
+		
+		BankVO bankvo = bank_dao.find_id_selectOne(ssn);
+		
+		String result = "no";
+		
+		if(bankvo != null) {
+			result = bankvo.getId();
+		}
+		
+		return result;
+	}
 	
 	
 	

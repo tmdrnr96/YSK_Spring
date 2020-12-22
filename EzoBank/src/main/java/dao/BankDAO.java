@@ -14,14 +14,12 @@ public class BankDAO {
 	
 	//아이디 중복 체크
 	public BankVO selectOne(String id){
-		BankVO vo = null;
-		vo = sqlSession.selectOne("bank.bank_id_check",id);		
+		BankVO vo = sqlSession.selectOne("bank.bank_id_check",id);	
 		return vo;
 	}
 	
 	//회원 정보 추가
-	public int insert(BankVO vo) {
-		System.out.println(vo.getEmail());
+	public int insert(BankVO vo) {		
 		int res = sqlSession.insert("bank.bank_account_insert",vo);		
 		return res;
 	}

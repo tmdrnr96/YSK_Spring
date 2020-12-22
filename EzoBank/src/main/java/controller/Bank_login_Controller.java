@@ -31,6 +31,7 @@ public class Bank_login_Controller {
 	
 	public static final String WEB_PATH = "/WEB-INF/views/bank_login/";
 	
+	
 	//로그인 페이지
 	@RequestMapping(value = {"/","/login.do"})
 	public String login() {
@@ -60,7 +61,7 @@ public class Bank_login_Controller {
 		return WEB_PATH + "bank_join_form.jsp";
 	}
 	
-	//사용 가능한 아이디 인지 확인
+	//아이디 중복 확인
 	@RequestMapping("/id_check.do")
 	@ResponseBody
 	public String id_check(String id) {
@@ -80,9 +81,15 @@ public class Bank_login_Controller {
 	@Autowired
 	HttpServletRequest request;
 	
+	//회원 정보 DB에 저장
 	@RequestMapping("/insert.do")
-	public String member_insert(BankVO vo) {
+	@ResponseBody
+	public String member_insert(BankVO vo, String ssn, String tel, String email, Model model) {
 		
+		vo.setSsn(ssn);
+		vo.setTel(tel);
+		vo.setEmail(email);
+			
 		//vo에 ip 등록
 		String ip = request.getRemoteAddr();		
 		vo.setIp(ip);
@@ -96,18 +103,33 @@ public class Bank_login_Controller {
 		 
 		 String account = account1 + "-" + account2 + "-" + account3; 		
 		 vo.setAccount(account);
-
-		 System.out.println(vo.getEmail());
 		 
 		 int res = bank_dao.insert(vo);
 		 
-		 
-		 if(res == 1) {
-			JOptionPane.showMessageDialog(null, "회원가입 완료!");
-		 }else {
-			JOptionPane.showMessageDialog(null, "오류... \n고객센터에 문의하세요.");
-		 }		
-			return "login.do";		
+		 model.addAttribute("res", res);
+		 String result = "no";
+
+		if(res != 0) {
+			result = "yes";
+		} 
+		
+		return result;		
 	}
 	
+	@RequestMapping("/forgot_id.do")
+	public String forgot_id() {
+		
+		return "";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
+

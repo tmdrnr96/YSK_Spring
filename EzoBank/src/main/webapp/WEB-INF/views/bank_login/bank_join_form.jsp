@@ -25,14 +25,13 @@
 		function id_check() {
 
 			var id = document.getElementById("id").value.trim();
-		
 			if(id == ""){
 				alert("ID를 입력해주세요.");
 				return;
 			}
-			
+						
 			var url = "id_check.do";
-			var param = "id"+id;
+			var param = "id="+id;
 			
 			sendRequest(url, param, id_result, "post");
 			
@@ -41,11 +40,12 @@
 		function id_result() {
 			if(xhr.readyState == 4 && xhr.status == 200){
 				var data = xhr.responseText;
-
+	
 				if(data == "yes"){
 					check = "yes";
 					alert("사용 가능한 아이디 입니다.");
 				}else{
+					check = "no";
 					alert("이미 사용 중인 아이디 입니다.");
 				}
 			}
@@ -53,7 +53,7 @@
 /*------------------------- id 중복 체크 ------------------------- */
 /*----------------------- 비밀번호 type 변경 ----------------------- */
 	function pwd_view() {
-
+	//JQuery..?
 	alert("업데이트 중...");
 		
 	
@@ -141,20 +141,28 @@
 				return;
 			}
 			
-		
-			// f.action = "insert.do";
-			//f.method = "post";
-			//f.submit();
-			
-			//Ajax로 회원 정보 추가!
+			//Ajax 사용(회원 정보 등록)
 			var url = "insert.do";
-			var param = "name="+name"&ssn="+ssn"&tel="+tel"&email="+email"&addr="+addr"&id="+id"&pwd="+pwd;
-						
-			sendRequest(url, param, resultFn, "post");
+			var param = "id="+id +"&pwd="+encodeURIComponent(pwd)+"&name="+name+"&ssn="+ssn+"&tel="+tel+"&email="+email+"&addr="+addr; 
+				
+			sendRequest(url,param,join_result,"post")
 			
 		}	
 		
-		
+		function join_result() {
+			if(xhr.readyState == 4 && xhr.status == 200){
+				var data = xhr.responseText;
+				
+			 	if(data != "yes"){
+			 		alert("회원가입 실패..\n고객센터에 문의바랍니다.");
+					return;				
+			 	}
+			 	 alert("회원가입 완료!");
+				 location.href = "login.do";				
+			 }
+			 				 	
+			}
+	
 /*------------------------- 회원가입 ------------------------- */		
 		
 		</script>

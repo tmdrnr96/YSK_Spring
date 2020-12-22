@@ -30,6 +30,19 @@
 //			f.submit();
 				
 		}
+		
+		//아이디 찾기
+		function f_id() {
+					
+			//window.open..생성 시 resizable속성을 설정해줘야 창 크기 조절 가능
+			var url = 'forgot_id.do'; 
+			var mywindow = window.open(url,'ID_Search','resizable');
+			mywindow.resizeTo(500,500);
+			mywindow.moveTo(300,500);
+			alert("11");
+		}
+		
+		
 		</script>
 	</head>
 	<body>

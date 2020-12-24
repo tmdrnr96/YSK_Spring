@@ -40,7 +40,7 @@
 			if(xhr.readyState == 4 && xhr.status == 200){
 				var data = xhr.responseText;
 				
-				//yes면 ID를 찾음..no면 가입 x
+				//no면 가입 x
 				if(data != 'no'){
 					alert("회원님의 아이디는 '"+data+"'입니다.");
 					window.close();

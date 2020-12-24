@@ -8,8 +8,10 @@
 		
 		<!-- bank_login_form.css 스타일 시트 참조  -->
 		<link rel = "stylesheet" href="${pageContext.request.contextPath}/resources/css/bank_login_form.css">
+		
 		<!--제이쿼리 적용..?  -->
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		
 		<script type="text/javascript">
 		function sign(f) {
 			
@@ -35,12 +37,19 @@
 		//아이디 찾기
 		function f_id() {
 					//크롬에서는 window지원이 잘 안됨..
-					//창크기 고정 필요..
-					
+					//창크기 고정 필요..					
 			var url = 'find_id_form.do'; 
-			window.open(url, "_blank","width=500, height=250, left=400, top=190, scrollbars=no, resizable=no");
+			var titel = "Find ID"
+			var status = "width=500, height=250, left=400, top=190, scrollbars=no, resizable=no";
+			window.open(url, title, status);
 		
 		}	
+		
+		//비밀번호 찾기
+		 function f_pwd() {
+			 var url = 'find_pwd_form.do'; 
+			window.open(url, "_blank","width=500, height=250, left=400, top=190, scrollbars=no, resizable=no");
+		} 
 		
 		
 		</script>

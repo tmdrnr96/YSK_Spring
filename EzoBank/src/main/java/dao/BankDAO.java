@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import vo.BankVO;
@@ -25,10 +27,21 @@ public class BankDAO {
 	}
 	
 	//회원 아이디 찾기
-	public BankVO find_id_selectOne(String ssn) {
-		
+	public BankVO find_id_selectOne(String ssn) {		
 		BankVO vo = sqlSession.selectOne("bank.bank_find_id",ssn);
-		
 		return vo;
 	}
+	
+	//회원 비밀번호 찾기
+	public BankVO find_pwd_selectOne(BankVO vo){	
+		BankVO list = sqlSession.selectOne("bank.bank_find_pwd", vo);
+		return list;
+	}
+	
+	//회원 비밀번호 변경
+	public int password_update(BankVO vo) {	
+		int res = sqlSession.update("bank.bank_change_password",vo);
+		return res;
+	}
+	
 }

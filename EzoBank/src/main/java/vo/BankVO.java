@@ -13,9 +13,9 @@ public class BankVO {
 	private String pwd;
 	private String account;
 	private String ip;
+	private String regdate;
 	
 	private int balance;
-	private int regdate;
 	
 	public String getIp() {
 		return ip;
@@ -83,12 +83,13 @@ public class BankVO {
 	public void setBalance(int balance) {
 		this.balance = balance;
 	}
-	public int getRegdate() {
+	public String getRegdate() {
 		return regdate;
 	}
-	public void setRegdate(int regdate) {
+	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
+	
 	
 	
 	

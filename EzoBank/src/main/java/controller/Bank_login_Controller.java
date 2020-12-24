@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -115,12 +116,12 @@ public class Bank_login_Controller {
 	}
 	
 	@RequestMapping("/find_id_form.do")
-	public String forgot_id() {
+	public String find_form_id() {
 		
 		return WEB_PATH + "bank_find_id_form.jsp";
 	}
 	
-	@RequestMapping("find_id.do")
+	@RequestMapping("/find_id.do")
 	@ResponseBody
 	public String find_id(String name, String ssn) {
 		
@@ -135,9 +136,56 @@ public class Bank_login_Controller {
 		return result;
 	}
 	
+	@RequestMapping("/find_pwd_form.do")
+	public String find_form_pwd() {
+		return WEB_PATH + "bank_find_pwd_form.jsp";
+	} 
 	
+	@RequestMapping("/find_pwd.do")
+	@ResponseBody
+	public String find_pwd(Model model, BankVO vo, String name, String id, String ssn) {
+		
+		vo.setName(name);
+		vo.setId(id);
+		vo.setSsn(ssn);
+		
+		BankVO bankvo = bank_dao.find_pwd_selectOne(vo);
+		
+		String result = "no";
+		
+		//DB검색 결과 해당 정보에 대한 조회가 없다면 
+		if(bankvo != null) {
+			result = "yes";			
+		}					
+		return result;
+				
+	}
 	
+	@RequestMapping("/bank_new_pwd.do")
+	public String bank_new_pwd(Model model, String ssn) {
+
+		
+		model.addAttribute("ssn",ssn);
+		
+		return WEB_PATH + "bank_new_pwd.jsp";
+	}
 	
+	@RequestMapping("change_password.do")
+	@ResponseBody
+	public String change_password(BankVO vo, String ssn, String pwd) {
+				
+		vo.setSsn(ssn);
+		vo.setPwd(pwd);
+				
+		int res = bank_dao.password_update(vo);
+		
+		String result = "no";
+		
+		if(res > 0) {
+			result = "yes";
+		}		
+		return result;
+	}
 	
 	
 	

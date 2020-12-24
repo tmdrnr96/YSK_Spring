@@ -9,14 +9,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select id from bank where id=#{id}
 	</select>
 	
+	<!--계정 추가  -->
 	<insert id="bank_account_insert" parameterType="vo.BankVO">
 		insert into bank values(bank_seq_idx.nextval, #{name}, #{ssn}, #{tel}, #{email}, #{addr}, #{id}, #{pwd}, #{account}, 0, #{ip}, sysdate)
 	</insert>
 
+	<!--아이디 찾기  -->
 	<select id="bank_find_id" parameterType="java.lang.String" resultType="vo.BankVO">
 		select id from bank where ssn=#{ssn}	
 	</select>
-
+	
+	<!-- 비밀번호 찾기  -->
+	<select id="bank_find_pwd" parameterType="vo.BankVO" resultType="vo.BankVO">
+		select * from bank where name=#{name} and id=#{id} and ssn=#{ssn}	
+	</select>
+	
+	<!--비밀번호 변경  -->
+	<update id="bank_change_password" parameterType="java.lang.String">
+		update bank set pwd=#{pwd} where ssn=#{ssn}
+	</update>
+	
 </mapper>
 
 

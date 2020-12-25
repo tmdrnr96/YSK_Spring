@@ -6,8 +6,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.prefs.BackingStoreException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,12 @@ public class Bank_login_Controller {
 	
 	BankDAO bank_dao;
 	
+	@Autowired
+	HttpServletRequest request;
+	
+	@Autowired
+	HttpSession session;
+	
 	public void setBank_dao(BankDAO bank_dao) {
 		this.bank_dao = bank_dao;
 	}
@@ -40,7 +48,7 @@ public class Bank_login_Controller {
 		return WEB_PATH + "bank_login_form.jsp";
 	}
 	
-	
+	//회원가입 폼으로 이동
 	@RequestMapping("/join_form.do")
 	public String join_form(Model model){
 	
@@ -77,10 +85,7 @@ public class Bank_login_Controller {
 		return res;	
 	}
 	
-	@Autowired
-	HttpServletRequest request;
-	
-	//회원 정보 DB에 저장
+	//회원 가입
 	@RequestMapping("/insert.do")
 	@ResponseBody
 	public String member_insert(BankVO vo, String ssn, String tel, String email, Model model) {
@@ -115,17 +120,22 @@ public class Bank_login_Controller {
 		return result;		
 	}
 	
+	//아이디 찾기 폼으로 이동
 	@RequestMapping("/find_id_form.do")
 	public String find_form_id() {
 		
 		return WEB_PATH + "bank_find_id_form.jsp";
 	}
 	
+	//아이디 찾기
 	@RequestMapping("/find_id.do")
 	@ResponseBody
-	public String find_id(String name, String ssn) {
+	public String find_id(BankVO vo, String name, String ssn) {
 		
-		BankVO bankvo = bank_dao.find_id_selectOne(ssn);
+		vo.setName(name);
+		vo.setSsn(ssn);
+		
+		BankVO bankvo = bank_dao.find_id_selectOne(vo);
 		
 		String result = "no";
 		
@@ -136,11 +146,13 @@ public class Bank_login_Controller {
 		return result;
 	}
 	
+	//비밀번호 찾기 폼으로 이동
 	@RequestMapping("/find_pwd_form.do")
 	public String find_form_pwd() {
 		return WEB_PATH + "bank_find_pwd_form.jsp";
 	} 
 	
+	//비밀번호 찾기
 	@RequestMapping("/find_pwd.do")
 	@ResponseBody
 	public String find_pwd(Model model, BankVO vo, String name, String id, String ssn) {
@@ -161,16 +173,17 @@ public class Bank_login_Controller {
 				
 	}
 	
+	//새로운 비밀번호 설정 폼으로 이동
 	@RequestMapping("/bank_new_pwd.do")
 	public String bank_new_pwd(Model model, String ssn) {
-
 		
 		model.addAttribute("ssn",ssn);
 		
 		return WEB_PATH + "bank_new_pwd.jsp";
 	}
 	
-	@RequestMapping("change_password.do")
+	//새로운 비밀번호 설정
+	@RequestMapping("/change_password.do")
 	@ResponseBody
 	public String change_password(BankVO vo, String ssn, String pwd) {
 				
@@ -186,8 +199,55 @@ public class Bank_login_Controller {
 		}		
 		return result;
 	}
+		
+	//로그인 하기!
+	@RequestMapping("/sign_up.do")
+	@ResponseBody
+	public String sign_up(Model model, BankVO vo) {
+		
+		String param = "";
+		String res = "";
+
+		BankVO bankvo = bank_dao.login(vo);	
+
+		//DB검색 결과 해당 ID가 없는 경우
+		if(bankvo == null){
+			param = "no_id";
+			res = String.format("[{'param':'%s'}]",param);
+			return res;
+		}
+		//DB검색 결과 해당 ID는 있지만 PWD가 없는 경우
+		if(!bankvo.getPwd().equals(vo.getPwd())) {
+			param = "no_pwd";
+			res = String.format("[{'param':'%s'}]",param);
+			return res;
+		}
+		
+		//DB검색 결과 해당 ID와 PWD가 존재하는 경우	
+		//1시간 동안 세션 저장!(로그인 상태 유지..)
+		session = request.getSession();
+		session.setAttribute("user",bankvo);
+		session.setMaxInactiveInterval(60*60);
+
+		param = "clear";
+		res = String.format("[{'param':'%s'}]",param);
+		return res;
+	}
 	
+	//메인 화면
+	@RequestMapping("/main.do")
+	public String main() {		
+		return "/WEB-INF/views/main/main.jsp";
+	}
 	
+	//로그아웃
+	@RequestMapping("/logout.do")
+	public String logout() {
+		
+		session.removeAttribute("user");
+		
+		return "redirect:login.do";
+	}
 	
 }
 

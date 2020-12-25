@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!--아이디 찾기  -->
 	<select id="bank_find_id" parameterType="java.lang.String" resultType="vo.BankVO">
-		select id from bank where ssn=#{ssn}	
+		select * from bank where name=#{name} and ssn=#{ssn} 	
 	</select>
 	
 	<!-- 비밀번호 찾기  -->
@@ -28,6 +28,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="bank_change_password" parameterType="java.lang.String">
 		update bank set pwd=#{pwd} where ssn=#{ssn}
 	</update>
+	
+	<!--로그인 하기 -->
+	<select id="bank_login" parameterType="vo.BankVO" resultType="vo.BankVO">
+		select * from bank where id=#{id}
+	</select>
+	
+
+	
+	
 	
 </mapper>
 

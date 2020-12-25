@@ -14,6 +14,9 @@
 		
 		<!-- Ajax 사용 준비 -->
 		<script src="${pageContext.request.contextPath}/resources/js/httpRequest.js"></script>
+		
+		<!--제이쿼리 적용..?  -->
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
 	
 		<script type="text/javascript">	
 		

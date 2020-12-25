@@ -27,9 +27,9 @@ public class BankDAO {
 	}
 	
 	//회원 아이디 찾기
-	public BankVO find_id_selectOne(String ssn) {		
-		BankVO vo = sqlSession.selectOne("bank.bank_find_id",ssn);
-		return vo;
+	public BankVO find_id_selectOne(BankVO vo) {		
+		BankVO bankvo = sqlSession.selectOne("bank.bank_find_id",vo);
+		return bankvo;
 	}
 	
 	//회원 비밀번호 찾기
@@ -43,5 +43,12 @@ public class BankDAO {
 		int res = sqlSession.update("bank.bank_change_password",vo);
 		return res;
 	}
+	
+	//로그인
+	public BankVO login(BankVO vo) {
+		BankVO bankvo = sqlSession.selectOne("bank.bank_login",vo);
+		return bankvo;
+	}
+
 	
 }

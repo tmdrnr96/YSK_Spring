@@ -55,7 +55,7 @@
 				window.close();
 				
 			}else{				
-				alert( name +"님,\n새로운 비밀번호를 설정해주세요.");
+				alert( name +"님, 안녕하세요.\n새로운 비밀번호를 설정해주세요.");
 				
 				window.close();
 				
@@ -80,7 +80,7 @@
 
 					var status = "width=500, height=250, left=400, top=190, toolbar=no,directories=no,scrollbars=no,resizable=no,status=no,menubar=no"
 
-					window.open("", title,status); //팝업 창으로 띄우기. 원치 않으면 주석.
+					window.open("", title,status); 
 					 
 					form.target = title;
 

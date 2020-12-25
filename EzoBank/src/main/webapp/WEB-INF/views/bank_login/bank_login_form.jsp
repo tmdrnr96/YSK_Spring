@@ -7,14 +7,23 @@
 		<title>Sign in to Personal Online Banking</title>
 		
 		<!-- bank_login_form.css 스타일 시트 참조  -->
-		<link rel = "stylesheet" href="${pageContext.request.contextPath}/resources/css/bank_login_form.css">
+		<!-- <link rel = "stylesheet" href="${pageContext.request.contextPath}/resources/css/bank_login_form.css"> -->		
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bank.css">
 		
-		<!--제이쿼리 적용..?  -->
-		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/js/httpRequest.js"></script>
+	
+		<!-- (임시)배경화면 적용이 잘 안됨..ㅜㅜ  -->
+		<style type="text/css">		
+		  body{background-image: url(resources/img/bank_building.jpg);
+  		  background-size: cover; 
+  		  }
+  		  
+		</style>
 		
 		<script type="text/javascript">
+		
 		function sign(f) {
-			
+
 			var id = f.id.value.trim();
 			var pwd = f.pwd.value.trim();
 			
@@ -28,20 +37,38 @@
 				return;
 			}
 			
-//			f.method = "post";
-//			f.action = "";
-//			f.submit();
+			var url = "sign_up.do";
+			var param = "id="+id+"&pwd="+encodeURIComponent(pwd);
+			
+			sendRequest(url, param, result,"post");				
+		}
+		
+		function result() {
+			if(xhr.readyState == 4 && xhr.status == 200){
+				var data = xhr.responseText;
+				var json = eval(data);
 				
+				if( json[0].param == 'no_id' ){
+					alert("아이디가 존재하지 않습니다");
+					
+				}else if( json[0].param == 'no_pwd'){
+					alert("비밀번호가 일치하지 않습니다");
+					
+				}else if( json[0].param == 'clear' ){
+					alert("로그인 성공");
+					location.href = "main.do";
+				}
+			}
 		}
 		
 		//아이디 찾기
 		function f_id() {
 					//크롬에서는 window지원이 잘 안됨..
-					//창크기 고정 필요..					
-			var url = 'find_id_form.do'; 
-			var titel = "Find ID"
-			var status = "width=500, height=250, left=400, top=190, scrollbars=no, resizable=no";
-			window.open(url, title, status);
+					//창크기 고정 필요..		
+					
+			var url = 'find_id_form.do';
+			var status = "width=500, height=250, left=400, top=190, scrollbars=no, resizable=no";	
+			window.open(url, "_blank", status);
 		
 		}	
 		
@@ -55,32 +82,34 @@
 		</script>
 	</head>
 	<body>
-		<form>
-			<div id = "table">
-				<table align = "center">
-				<caption id = "title" ><h2>Personal Online Banking</h2></caption>
-					<tr>						
-						<td><input class = "log" name = "id" placeholder="User ID" ></td>
-					</tr>
-					<tr>						
-						<td><input class = "log" type = "password" name = "pwd" placeholder="User Password"></td>
-					</tr>
-					
-					<tr>
-						<td align = "center">
-							<input type = "button" class = "btn_log" value = "Sign up" onclick = "sign(this.form);" >					
-						</td>
-					</tr>	
-				</table>
-			</div>					
-		</form>
-		<div id = "find" align = "center">
-			Forgot <a class = "f" href = "javascript:f_id();">Account ?</a> | 
-				   <a  class = "f" href = "javascript:f_pwd();">Password ?</a>		
-		</div>
-		
-		<div id = "join" align = "center">
-			  <a class = "j" href = "join_form.do;"> Sign up for an Account </a>	
+		<div class = "box">
+			<h1>로그인</h1>
+			<form>
+				<div id = "table">
+					<table align = "center">
+						<tr>						
+							<td><input type = "text" class = "log" name = "id" placeholder="User ID" ></td>
+						</tr>
+						<tr>						
+							<td><input class = "log" type = "password" name = "pwd" placeholder="User Password"></td>
+						</tr>
+						
+						<tr>
+							<td align = "center">
+								<input type = "button" class = "btn_log" value = "Sign up" onclick = "sign(this.form);" >					
+							</td>
+						</tr>	
+					</table>
+				</div>					
+			</form>
+			<div id = "find" align = "center">
+					   <a class = "f" href = "javascript:f_id();">Forgot Account ?</a>  
+					   <a class = "f" href = "javascript:f_pwd();">Forgot Password ?</a>		
+			</div>
+			
+			<div id = "join" align = "center">
+				  <a class = "j" href = "join_form.do;"> Sign up for an Account </a>	
+			</div>
 		</div>
 	</body>
 </html>

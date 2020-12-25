@@ -88,7 +88,7 @@ public class Bank_login_Controller {
 	//회원 가입
 	@RequestMapping("/insert.do")
 	@ResponseBody
-	public String member_insert(BankVO vo, String ssn, String tel, String email, Model model) {
+	public String member_insert(BankVO vo, String ssn, String tel, String email) {
 		
 		vo.setSsn(ssn);
 		vo.setTel(tel);
@@ -109,8 +109,7 @@ public class Bank_login_Controller {
 		 vo.setAccount(account);
 		 
 		 int res = bank_dao.insert(vo);
-		 
-		 model.addAttribute("res", res);
+
 		 String result = "no";
 
 		if(res != 0) {
@@ -234,20 +233,20 @@ public class Bank_login_Controller {
 		return res;
 	}
 	
+	
+	//로그아웃
+	@RequestMapping("/logout.do")
+	public String logout() {
+		//저장된 세션 지우기
+		session.removeAttribute("user");		
+		return "redirect:login.do";
+	}
+	
 	//메인 화면
 	@RequestMapping("/main.do")
 	public String main() {		
 		return "/WEB-INF/views/main/main.jsp";
 	}
-	
-	//로그아웃
-	@RequestMapping("/logout.do")
-	public String logout() {
-		
-		session.removeAttribute("user");
-		
-		return "redirect:login.do";
-	}
-	
+
 }
 

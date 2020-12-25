@@ -34,8 +34,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from bank where id=#{id}
 	</select>
 	
-
-	
+	<!--회원 정보 수정  -->
+	<update id="bank_info_update" parameterType="vo.BankVO">		
+	update bank set pwd=#{pwd}, name=#{name}, tel=#{tel}, email=#{email}, addr=#{addr} where idx=#{idx}
+	</update>
 	
 	
 </mapper>

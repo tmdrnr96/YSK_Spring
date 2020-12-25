@@ -82,8 +82,11 @@
 		</script>
 	</head>
 	<body>
+	<div class="login" align="center">
+			<jsp:include page="../bank_login/session/bank_login_logout1.jsp"/>
+		</div>
 		<div class = "box">
-			<h1>로그인</h1>
+			<h1>EzoBank Login</h1>
 			<form>
 				<div id = "table">
 					<table align = "center">
@@ -97,6 +100,7 @@
 						<tr>
 							<td align = "center">
 								<input type = "button" class = "btn_log" value = "Sign up" onclick = "sign(this.form);" >					
+								<input type = "button" class = "btn_cancel" value = "Cancel" onclick = "history(-1);" >
 							</td>
 						</tr>	
 					</table>

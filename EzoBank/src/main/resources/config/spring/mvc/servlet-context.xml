@@ -33,5 +33,8 @@
 		<beans:property name="bank_dao" ref = "bank_daoBean"/> 
 	</beans:bean>
 	
+	<beans:bean class = "controller.Bank_User_Controller">		
+		<beans:property name="bank_dao" ref = "bank_daoBean"/> 
+	</beans:bean>
 	
 </beans:beans>

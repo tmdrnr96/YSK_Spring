@@ -143,9 +143,9 @@ h1{
 }
 
 .box input[type = "button"]{
+	
   border:0;
   background: none;
-  display: block;
   margin: 5px auto;
   text-align: center;
   border: 2px solid #2ecc71;

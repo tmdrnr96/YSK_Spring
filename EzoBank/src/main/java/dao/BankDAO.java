@@ -1,6 +1,5 @@
 package dao;
 
-import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -50,5 +49,10 @@ public class BankDAO {
 		return bankvo;
 	}
 
+	//회원정보 수정
+	public int user_modified(BankVO vo) {
+		int res = sqlSession.update("bank.bank_info_update",vo);		
+		return res;
+	}
 	
 }

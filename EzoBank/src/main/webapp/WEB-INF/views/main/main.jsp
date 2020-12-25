@@ -18,8 +18,8 @@
 	
 	<body>
 		<div class="login" align="center">
-			<jsp:include page="../bank_login/bank_login_logout.jsp"/>
+			<jsp:include page="../bank_login/session/bank_login_logout.jsp"/>
 		</div>
-		<p>aa</p>
+		<p>메인 페이지</p>
 	</body>
 </html>

@@ -63,6 +63,12 @@ BankDAO bank_dao;
 		model.addAttribute("account2",account2);
 		model.addAttribute("account3",account3);
 		
+		//주소
+		String addr1 = vo.getAddr().substring(0,vo.getAddr().indexOf('/'));
+		String addr2 = vo.getAddr().substring(vo.getAddr().indexOf('/')+1,vo.getAddr().length()); 
+		
+		model.addAttribute("addr1",addr1);
+		model.addAttribute("addr2",addr2);
 		
 		return WEB_PATH + "bank_user_update.jsp";
 	}
@@ -75,12 +81,10 @@ BankDAO bank_dao;
 		vo.setAccount(account);
 		vo.setTel(tel);
 		vo.setEmail(email);
-			
+
 		int res = bank_dao.user_modified(vo);
 		
 		String result = "no";
-		
-		System.out.println(res);
 		
 		if(res > 0) {
 			

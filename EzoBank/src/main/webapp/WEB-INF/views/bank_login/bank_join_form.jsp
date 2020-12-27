@@ -15,11 +15,52 @@
 		<!-- Ajax 사용 준비 -->
 		<script src="${pageContext.request.contextPath}/resources/js/httpRequest.js"></script>
 		
+		<!--주소 찾기 API  -->
+		<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+		
 		<!--제이쿼리 적용..?  -->
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
 	
 		<script type="text/javascript">	
+	
+/*------------------------- 주소 찾기 API ------------------------- */
 		
+    function DaumPostcode_API() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+
+                var extraRoadAddr = ''; // 참고 항목 변수
+
+                // 참고 항목변수에 추가
+                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                   extraRoadAddr += data.bname;
+               		}
+                
+                // 건물명이 있고, 공동주택일 경우 참고 항목변수에 추가
+                if(data.buildingName != '' && data.apartment == 'Y'){
+                	extraRoadAddr += (extraRoadAddr != '' ? ', ' + data.buildingName : data.buildingName);
+                }
+
+                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                if(extraRoadAddr != ''){
+                    extraRoadAddr = '(' + extraRoadAddr + ')';
+                }
+             
+                // 해당 주소에 대한 정보 저장
+                document.getElementById('postcode').value = data.zonecode;
+                document.getElementById("roadAddr").value = data.roadAddress + extraRoadAddr;
+                document.getElementById("jibunAddr").value = data.jibunAddress + extraRoadAddr;                         
+
+                // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
+                if(roadAddr != ''){
+                    document.getElementById("extraAddr").value = extraRoadAddr;
+                } else {
+                    document.getElementById("extraAddr").value = '';
+                }                
+            }
+        }).open();
+    }
+/*------------------------- 주소 찾기 API ------------------------- */
 /*------------------------- id 중복 체크 ------------------------- */
 		
 		/* Ajax 사용(중복 ID Check) */
@@ -76,8 +117,8 @@
 			var ssn = f.ssn1.value.trim() + "-" + f.ssn2.value.trim();
 			var tel = f.tel1.value.trim() +"-"+ f.tel2.value.trim() +"-"+ f.tel3.value.trim();
 			var email = f.email1.value.trim() +"@"+ f.email2.value.trim();
-			var addr = f.addr.value.trim();
-		
+		 	var addr =  f.roadAddr.value +"/"+f.detailAddr.value.trim();  
+		 	
 			//아이디
 			if(id == ""){
 				alert("아이디를 입력해주세요");
@@ -208,8 +249,25 @@
 					<td colspan = "2"><input name = "email1" maxlength= "9" size = "6"> @ <input name = "email2" size = "13"></td>
 				</tr>		
 				<tr>
-					<th> Address : </th>
-					<td colspan = "2"><input name = "addr" size = "29"></td>
+					<th rowspan ="3"> Address : </th>
+					
+				<!-- 주소 찾기 API --> 
+					<td>
+						<input type="text" id="postcode" placeholder="우편번호" readonly>
+						<input type="button" id = "find_addr" onclick="DaumPostcode_API();" value="Find">
+					</td>
+				</tr>
+				<tr>
+					<td>						
+						<input type="text" name = "roadAddr" id="roadAddr" placeholder="도로명주소" size="30" readonly>
+						<input type="hidden" name = "jibunAddr" id="jibunAddr" placeholder="지번주소"  size="30"readonly>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="text" name = "detailAddr" id="detailAddr" placeholder="상세주소"  size="30">
+						<input type="hidden" name = "extraAddr" id="extraAddr" placeholder="참고항목"  size="30">
+					</td>
 				</tr>
 				<tr>
 					<td colspan = "3" align = "center">

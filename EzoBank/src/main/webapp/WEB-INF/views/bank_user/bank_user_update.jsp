@@ -1,11 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
 		<script src="${pageContext.request.contextPath}/resources/js/httpRequest.js"></script>
+		<!--주소 찾기 API  -->
+		<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+		
 		<script type="text/javascript">
 		
 		function user_info(f) {
@@ -18,6 +24,7 @@
 			var tel = f.tel1.value.trim() +"-"+ f.tel2.value.trim() +"-"+ f.tel3.value.trim();
 			var email = f.email1.value.trim() +"@"+ f.email2.value.trim();
 			var addr = f.roadAddr.value +"/"+f.detailAddr.value.trim();
+			var postcode = f.postcode.value;
 			var idx = f.idx.value;
 			
 			//변경 가능한 것들에 대한 유효성 체크			
@@ -59,7 +66,7 @@
 				return;
 			}
 			
-			var param = "idx="+idx+"&pwd="+encodeURIComponent(pwd)+"&name="+name+"&ssn="+ssn+"&account="+account+"&tel="+tel+"&email="+email+"&addr="+addr;
+			var param = "idx="+idx+"&pwd="+encodeURIComponent(pwd)+"&name="+name+"&ssn="+ssn+"&account="+account+"&tel="+tel+"&email="+email+"&addr="+addr + "&postcode="+postcode;
 			var url = "user_modified.do";
 			
 			sendRequest(url,param,result,"post");
@@ -80,13 +87,34 @@
 			}
 		}
 		
+		/*----------------------- 비밀번호 type 변경 ----------------------- */
+		var on_off = 'on';
+			
+		function pwd_view() {
+			
+			if(on_off == 'on'){
+				pwd.type = 'text';
+				c_pwd.type = 'text';			
+				on_off = 'off';
+				view.value = 'View Off';
+				
+			}else if(on_off == 'off'){
+				pwd.type = 'password';
+				c_pwd.type = 'password';			
+				on_off = 'on';
+				view.value = 'View On';
+			}
+
+		}
+	/*----------------------- 비밀번호 type 변경 ----------------------- */		
 		/*------------------------- 주소 찾기 API ------------------------- */
 		
 	    function DaumPostcode_API() {
 	        new daum.Postcode({
 	            oncomplete: function(data) {
 
-	                var extraRoadAddr = ''; // 참고 항목 변수
+	            	// 참고 항목 변수
+	                var extraRoadAddr = ''; 
 
 	                // 참고 항목변수에 추가
 	                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
@@ -125,6 +153,13 @@
 	
 	<body>
 		<!--로그인 없이 이용 불가능  -->
+		<c:if test="${ empty sessionScope.user}">
+			<script>
+				alert("로그인 후 이용하세요");
+				location.href="login.do";
+			</script>
+		</c:if>  
+		
 		<!--아이디, 주민번호, 계좌번호 수정 불가 이외 수정 가능  -->
 		<!-- 수정시 비밀번호를 입력   -->
 		<div class="login" align="center">
@@ -140,12 +175,12 @@
 				</tr>
 				<tr>
 					<th> User Password : </th>
-					<td><input type = "password" name = "pwd"></td>
-					<td class = "idpwd"><input type = "button" id = "view" name = "view" value = "View" onclick = "pwd_view();"></td>		
+					<td><input type = "password" id = "pwd" name = "pwd"></td>
+					<td class = "idpwd"><input type = "button" id = "view" name = "view" value = "View On" onclick = "pwd_view();"></td>		
 				</tr>
 				<tr>
 					<th> Password Check : </th>
-					<td><input type = "password" name = "c_pwd"></td>
+					<td><input type = "password" id = "c_pwd" name = "c_pwd"></td>
 				</tr>				
 				<tr>
 					<th> User Name : </th>
@@ -171,19 +206,19 @@
 					<th rowspan = "3"> Address : </th>
 					<!-- 주소 찾기 API --> 
 					<td>
-						<input type="text" id="postcode" placeholder="우편번호" readonly>
+						<input type="text" id="postcode" placeholder="Postcode" value=${user.postcode} readonly>
 						<input type="button" id = "find_addr" onclick="DaumPostcode_API();" value="Find">
 					</td>
 				</tr>
 				<tr>
 					<td>						
-						<input type="text" name = "roadAddr" id="roadAddr" placeholder="도로명주소" size="30" value = '${addr1}' readonly>
-						<input type="hidden" name = "jibunAddr" id="jibunAddr" placeholder="지번주소"  size="30" value = '${addr1}' readonly>
+						<input type="text" name = "roadAddr" id="roadAddr" placeholder="Address" size="30" value = '${addr1}' readonly>
+						<input type="hidden" name = "jibunAddr" id="jibunAddr" placeholder="Address"  size="30" value = '${addr1}' readonly>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<input type="text" name = "detailAddr" id="detailAddr" placeholder="상세주소"  value = '${addr2}' size="30">
+						<input type="text" name = "detailAddr" id="detailAddr" placeholder="Detail Address"  value = '${addr2}' size="30">
 						<input type="hidden" name = "extraAddr" id="extraAddr" placeholder="참고항목"  size="30">
 					</td>
 				</tr>

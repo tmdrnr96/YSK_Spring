@@ -61,11 +61,11 @@
 	<!-- 입금, 출금, 계좌내역(잔금) - 메인 페이지를 제외한 모든 페이지 적용   -->	
 		<div id = "main_list">
 		<div id = log>
-				<a class="loglink" href="#">EzoBank?</a>			
+				<a class="loglink" href="#">이조뱅크?</a>			
 			&nbsp;|&nbsp;
-				<a class="loglink" href = "login.do">Sign Up</a>		
+				<a class="loglink" href = "login.do">로그인</a>		
 		</div>
-			<a id = "img" href="#">
+			<a id = "img" href="main.do">
 	            <img class="title_icon" src="${pageContext.request.contextPath}/resources/img/logo_1.png";>
 	        </a>
 		<div id = "menu">

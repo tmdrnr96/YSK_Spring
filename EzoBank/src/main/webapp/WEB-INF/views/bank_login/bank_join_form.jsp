@@ -96,13 +96,23 @@
 		}
 /*------------------------- id 중복 체크 ------------------------- */
 /*----------------------- 비밀번호 type 변경 ----------------------- */
-	function pwd_view() {
-	//JQuery..?
-	alert("업데이트 중...");
+	var on_off = 'on';
 		
-	
-	
-	
+	function pwd_view() {
+		
+		if(on_off == 'on'){
+			pwd.type = 'text';
+			c_pwd.type = 'text';			
+			on_off = 'off';
+			view.value = 'View Off';
+			
+		}else if(on_off == 'off'){
+			pwd.type = 'password';
+			c_pwd.type = 'password';			
+			on_off = 'on';
+			view.value = 'View On';
+		}
+
 	}
 /*----------------------- 비밀번호 type 변경 ----------------------- */
 /*------------------------- 회원가입 ------------------------- */
@@ -117,8 +127,11 @@
 			var ssn = f.ssn1.value.trim() + "-" + f.ssn2.value.trim();
 			var tel = f.tel1.value.trim() +"-"+ f.tel2.value.trim() +"-"+ f.tel3.value.trim();
 			var email = f.email1.value.trim() +"@"+ f.email2.value.trim();
-		 	var addr =  f.roadAddr.value +"/"+f.detailAddr.value.trim();  
+		 	var postcode = f.postcode.value;
+			var addr =  f.roadAddr.value +"/"+f.detailAddr.value.trim();  
 		 	
+			alert(postcode);
+			
 			//아이디
 			if(id == ""){
 				alert("아이디를 입력해주세요");
@@ -187,7 +200,7 @@
 			
 			//Ajax 사용(회원 정보 등록)
 			var url = "insert.do";
-			var param = "id="+id +"&pwd="+encodeURIComponent(pwd)+"&name="+name+"&ssn="+ssn+"&tel="+tel+"&email="+email+"&addr="+addr; 
+			var param = "id="+id +"&pwd="+encodeURIComponent(pwd)+"&name="+name+"&ssn="+ssn+"&tel="+tel+"&email="+email+"&postcode="+postcode+"&addr="+addr; 
 				
 			sendRequest(url,param,join_result,"post")
 			
@@ -213,6 +226,9 @@
 		
 	</head>
 	<body>
+		<div class="login" align="center">
+			<jsp:include page="../bank_login/session/bank_login_logout.jsp"/>
+		</div>
 		<form>
 			<h2 align = "center">Online Banking Enrollment</h2>
 			<p align = "center">* Please enter your account information.</p>
@@ -225,12 +241,12 @@
 				</tr>
 				<tr>
 					<th> User Password : </th>
-					<td><input type = "password" name = "pwd"></td>
-					<td class = "idpwd"><input type = "button" id = "view" name = "view" value = "View" onclick = "pwd_view();"></td>		
+					<td><input type = "password" id = pwd name = "pwd"></td> 
+					<td class = "idpwd"><input type = "button" id = "view" name = "view" value = "View On" onclick = "pwd_view();"></td>		
 				</tr>
 				<tr>
 					<th> Password Check : </th>
-					<td><input type = "password" name = "c_pwd"></td>
+					<td><input type = "password" id = c_pwd name = "c_pwd"></td>
 				</tr>				
 				<tr>
 					<th> User Name : </th>
@@ -253,19 +269,19 @@
 					
 				<!-- 주소 찾기 API --> 
 					<td>
-						<input type="text" id="postcode" placeholder="우편번호" readonly>
+						<input type="text" id="postcode" placeholder="Postcode" readonly>
 						<input type="button" id = "find_addr" onclick="DaumPostcode_API();" value="Find">
 					</td>
 				</tr>
 				<tr>
 					<td>						
-						<input type="text" name = "roadAddr" id="roadAddr" placeholder="도로명주소" size="30" readonly>
-						<input type="hidden" name = "jibunAddr" id="jibunAddr" placeholder="지번주소"  size="30"readonly>
+						<input type="text" name = "roadAddr" id="roadAddr" placeholder="Address" size="30" readonly>
+						<input type="hidden" name = "jibunAddr" id="jibunAddr" placeholder="Address"  size="30"readonly>
 					</td>
-				</tr>
+				</tr> 
 				<tr>
 					<td>
-						<input type="text" name = "detailAddr" id="detailAddr" placeholder="상세주소"  size="30">
+						<input type="text" name = "detailAddr" id="detailAddr" placeholder="Detail Address"  size="30">
 						<input type="hidden" name = "extraAddr" id="extraAddr" placeholder="참고항목"  size="30">
 					</td>
 				</tr>

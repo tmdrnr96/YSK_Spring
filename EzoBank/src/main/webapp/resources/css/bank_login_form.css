@@ -1,39 +1,92 @@
 @charset "UTF-8";
 
-#title{width : 300px; margin : 20px 0;}
+.box{
+  width: 300px;
+  padding: 40px;
+  position: absolute;
+  top: 55%;
+  left: 50%; 
+  transform: translate(-50%,-50%);
+  background: #212121;
+  text-align: center;
+  border: 2px solid black;
+  border-radius: 20px;
+}
 
-#table{ margin:50px auto;
-		width: 1000px; 
-		height : 190px;
-		text-align: center;}
-		
-.btn_log {width : 260px;
-		  height : 40px;
-		  margin : 10px 0;
-		  font-size: 15px;
-		  font-weight: bold;
-		  border:0; 
-		  outline:0;
-		  background-color: grey; 
-		  color : white;
-		  cursor:pointer;}
+#joining{
+  width: 550px;
+  padding: 40px;
+  position: absolute;
+  top: 120%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background: #212121;
+  text-align: center;
+  border: 2px solid black;
+  border-radius: 20px;
+}
 
-.log{width: 250px;
-	height: 25px;}
 
-#find{margin-top: 80px;
-	  margin-bottom: 25px;}
+.box h1{
+  color: white;
+  font-weight: 500px;
+}
 
-.j{color: red;}
+.box input[type = "text"],.box input[type = "password"]{
+  border:0;
+  background: none;
+  display: block;
+  margin: 5px auto;
+  text-align: center;
+  border: 2px solid #3498db;
+  padding: 14px 10px;
+  width: 200px;
+  outline: none;
+  color: white;
+  border-radius: 24px;
+  transition: 0.25s;
+}
 
-.f{margin : 0 10px;  color: grey;}	  
+.box input[type = "text"]:focus,.box input[type = "password"]:focus{
+  width: 280px;
+  border-color: #2ecc71;
+}
 
+.box input[type = "button"]{
 	
-a{text-decoration: none;}
+  border:0;
+  background: none;
+  margin: 5px auto;
+  text-align: center;
+  border: 2px solid #2ecc71;
+  padding: 14px 40px;
+  outline: none;
+  color: white;
+  border-radius: 24px;
+  transition: 0.25s;
+  cursor: pointer;
+}
 
-		
-#find a:hover{color: black; text-decoration: underline;}		
-#join a:hover{text-decoration: underline;}	
+.box input[type = "button"]:hover{
+  background: #2ecc71;
+}
 
-/* 버튼 hover 효과  */	
-input[type=button]:hover{background-color:black;}
+.box a{
+  text-decoration: none;
+  border:0;
+  background: none;
+  display: block;
+  margin: 5px auto;
+  text-align: center;
+  border: 2px solid #FF7171;
+  padding: 5px 5px;
+  outline: none;
+  color: white;
+  border-radius: 24px;
+  transition: 0.25s;
+  cursor: pointer;
+}
+
+.box a:hover{
+  background: #FF7171;
+}

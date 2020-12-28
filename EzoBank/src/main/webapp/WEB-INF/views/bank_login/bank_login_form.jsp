@@ -7,8 +7,8 @@
 		<title>Sign in to Personal Online Banking</title>
 		
 		<!-- bank_login_form.css 스타일 시트 참조  -->
-		<!-- <link rel = "stylesheet" href="${pageContext.request.contextPath}/resources/css/bank_login_form.css"> -->		
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bank.css">
+		<link rel = "stylesheet" href="${pageContext.request.contextPath}/resources/css/bank_login_form.css">		
+		
 		
 		<script src="${pageContext.request.contextPath}/resources/js/httpRequest.js"></script>
 	
@@ -19,6 +19,7 @@
   		  }
   		  
 		</style>
+		
 		
 		<script type="text/javascript">
 		
@@ -64,10 +65,9 @@
 		//아이디 찾기
 		function f_id() {
 					//크롬에서는 window지원이 잘 안됨..
-					//창크기 고정 필요..		
-					
+					//창크기 고정 필요..							
 			var url = 'find_id_form.do';
-			var status = "width=500, height=250, left=400, top=190, scrollbars=no, resizable=no";	
+			var status = "width=510, height=400, left=370, top=190, scrollbars=no, resizable=no";	
 			window.open(url, "_blank", status);
 		
 		}	
@@ -75,7 +75,7 @@
 		//비밀번호 찾기
 		 function f_pwd() {
 			 var url = 'find_pwd_form.do'; 
-			window.open(url, "_blank","width=500, height=250, left=400, top=190, scrollbars=no, resizable=no");
+			window.open(url, "_blank","width=510, height=400, left=370, top=190, scrollbars=no, resizable=no");
 		} 
 		
 		
@@ -83,7 +83,7 @@
 	</head>
 	<body>
 	<div class="login" align="center">
-			<jsp:include page="../bank_login/session/bank_login_logout1.jsp"/>
+			<jsp:include page="../bank_login/session/bank_login_logout.jsp"/>
 		</div>
 		<div class = "box">
 			<h1>EzoBank Login</h1>

@@ -5,6 +5,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Find_User_Password</title>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bank_find_pwd_form.css">
 		<!-- Ajax 사용 준비 -->
 		<script src="${pageContext.request.contextPath}/resources/js/httpRequest.js"></script>
 		<script type="text/javascript">
@@ -97,8 +98,8 @@
 		</script>
 	</head>
 	<body>
-		<form>
-			<h2 align = "center">Find User Password</h2>
+		<form class = "box">
+			<h1 align = "center">Find User Password</h1>
 			<table align = "center">
 				<tr>
 					<th>User Name : </th>
@@ -108,7 +109,7 @@
 					<td><input id = "id" name = "id"></td>
 				<tr>
 					<th>Social Security Number : </th>
-					<td><input id = "ssn1" name = "ssn1" maxlength="6" size = "6"> - <input type = "password" id = "ssn2" name = "ssn2" maxlength="7" size = "7"></td>
+					<td><input id = "ssn1" class = "ssn" name = "ssn1" maxlength="6" size = "6"> - <input type = "password" id = "ssn2" class = "ssn" name = "ssn2" maxlength="7" size = "7"></td>
 				</tr>
 				<tr>
 					<td colspan = "2" align = "center">

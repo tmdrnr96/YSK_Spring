@@ -21,19 +21,25 @@
 			color: white;
 			}
 	
-		#log{
+		.log{
 			text-align: right;
-			margin-top: 40px;
-			
+			margin-top: 50px;
+			margin-right: 50px;
+			color:#fff;		
 			}
-		#img{
-			margin-top: -10px;
-			margin-left: 10px;
+			
+		#log_off{
+			margin-right: 50px;
+		}	
+			
+		img.title_icon{
+			position:absolute;
+			left:50px;
+			top:50px;
 		}
 		  	
 		.loglink{
-		  color: #fff;
-   		  
+		  color: #fff; 		  
    		  margin: 5px;
    		  padding: 5px 15px;
    		  border: 1px solid #fff;
@@ -75,34 +81,38 @@
 	<body>
 	
 	<!-- 입금, 출금, 계좌내역(잔금) - 메인 페이지를 제외한 모든 페이지 적용   -->	
-	<c:if test="${ empty sessionScope.user}">
-			<script>
-				alert("로그인 후 이용하세요");
-				location.href="login.do";
-			</script>
+	<c:if test="${empty sessionScope.user}">
+		<div id = "main_list">
+			<div class = "log" id = "log_off">
+				<a class="loglink" href="#">이조뱅크?</a>			
+			&nbsp;|&nbsp;
+				<a class="loglink" href = "login.do">로그인</a>		
+			</div>	
+		</div>
 	</c:if>    
-		
+	
+	<c:if test = "${!empty sessionScope.user}">
 		<!--회원 정보 수정을 위한 idx -->
 		<form name = "post">
 			<input type="hidden" value = "${user.idx}" name = "idx" >
-		</form>
-			
-			
-		<div id = "main_list">
-		<div id = log>
-			<span id = "login"><span id = "name">${user.name}</span>님 안녕하세요.</span>
-			&nbsp;|&nbsp;
-				<a class="loglink" href="javascript:user_info_update('${user.idx}');">회원정보수정</a>			
-			&nbsp;|&nbsp;
-				<a class="loglink" href = "logout.do;">로그아웃</a>			
-		</div>
-			<a id = "img" href="#">
+		</form>			
+			<div id = "main_list">
+				<div class = "log">
+					<span id = "login"><span id = "name">${user.name}</span>님 안녕하세요.</span>
+					&nbsp;|&nbsp;
+						<a class="loglink" href="#">계좌상세정보</a>	
+					&nbsp;|&nbsp;
+						<a class="loglink" href="javascript:user_info_update('${user.idx}');">회원정보수정</a>			
+					&nbsp;|&nbsp;
+						<a class="loglink" href = "logout.do;">로그아웃</a>			
+				</div>
+			</div>		
+		</c:if>	
+		
+		<div class = "img">
+			<a id = "img" href="main.do">
 	            <img class="title_icon" src="${pageContext.request.contextPath}/resources/img/logo_1.png";>
 	        </a>
-		<div id = "menu">
-			<!--메뉴 리스트 만들기.  -->
-		</div>
-		
-		</div>
+	    </div>	
 	</body>
 </html>

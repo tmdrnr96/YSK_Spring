@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!--계정 추가  -->
 	<insert id="bank_account_insert" parameterType="vo.BankVO">
-		insert into bank values(bank_seq_idx.nextval, #{name}, #{ssn}, #{tel}, #{email}, #{addr}, #{id}, #{pwd}, #{account}, 0, #{ip}, sysdate)
+		insert into bank values(bank_seq_idx.nextval, #{name}, #{ssn}, #{tel}, #{email}, #{addr}, #{id}, #{pwd}, #{account}, 0, #{ip}, sysdate, #{postcode})
 	</insert>
 
 	<!--아이디 찾기  -->

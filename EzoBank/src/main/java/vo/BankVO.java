@@ -13,7 +13,8 @@ public class BankVO {
 	private String pwd;
 	private String account;
 	private String ip;
-	private String regdate;
+	private String regdate;	
+	private String postcode;
 	
 	private int balance;
 	
@@ -89,6 +90,15 @@ public class BankVO {
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
+	public String getPostcode() {
+		return postcode;
+	}
+	public void setPostcode(String postcode) {
+		this.postcode = postcode;
+	}
+	
+	
+	
 	
 	
 	

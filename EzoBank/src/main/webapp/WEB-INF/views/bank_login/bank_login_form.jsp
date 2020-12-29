@@ -86,7 +86,7 @@
 			<jsp:include page="../bank_login/session/bank_login_logout.jsp"/>
 		</div>
 		<div class = "box">
-			<h1>EzoBank Login</h1>
+			<h1>EzoBank 로그인</h1>
 			<form>
 				<div id = "table">
 					<table align = "center">
@@ -99,20 +99,20 @@
 						
 						<tr>
 							<td align = "center">
-								<input type = "button" class = "btn_log" value = "Sign up" onclick = "sign(this.form);" >					
-								<input type = "button" class = "btn_cancel" value = "Cancel" onclick = "history(-1);" >
+								<input type = "button" class = "btn_log" value = "로그인" onclick = "sign(this.form);" >					
+								<input type = "button" class = "btn_cancel" value = "닫기" onclick = "history(-1);" >
 							</td>
 						</tr>	
 					</table>
 				</div>					
 			</form>
 			<div id = "find" align = "center">
-					   <a class = "f" href = "javascript:f_id();">Forgot Account ?</a>  
-					   <a class = "f" href = "javascript:f_pwd();">Forgot Password ?</a>		
+					   <a class = "f" href = "javascript:f_id();">아이디 찾기</a>  
+					   <a class = "f" href = "javascript:f_pwd();">비밀번호 찾기</a>		
 			</div>
 			
 			<div id = "join" align = "center">
-				  <a class = "j" href = "join_form.do;"> Sign up for an Account </a>	
+				  <a class = "j" href = "join_form.do;"> EzoBank 회원 가입 </a>	
 			</div>
 		</div>
 	</body>

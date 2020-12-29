@@ -7,11 +7,22 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Insert title here</title>
+		<title>Online Banking Modified</title>
+	
 		<script src="${pageContext.request.contextPath}/resources/js/httpRequest.js"></script>
 		<!--주소 찾기 API  -->
 		<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 		
+		<!--bank_join_form.css 스타일 시트 참조  -->
+		<link rel = "stylesheet" href="${pageContext.request.contextPath}/resources/css/bank_user_update.css">
+		
+		<!-- (임시)배경화면 적용이 잘 안됨..ㅜㅜ  -->
+		<style type="text/css">		
+		  body{background-image: url(resources/img/bank_building.jpg);
+  		  background-size: cover; 
+  		  }
+		</style>
+
 		<script type="text/javascript">
 		
 		function user_info(f) {
@@ -96,13 +107,13 @@
 				pwd.type = 'text';
 				c_pwd.type = 'text';			
 				on_off = 'off';
-				view.value = 'View Off';
+				view.value = '끄기';
 				
 			}else if(on_off == 'off'){
 				pwd.type = 'password';
 				c_pwd.type = 'password';			
 				on_off = 'on';
-				view.value = 'View On';
+				view.value = '보기';
 			}
 
 		}
@@ -165,60 +176,60 @@
 		<div class="login" align="center">
 			<jsp:include page="../bank_login/session/bank_login_logout.jsp"/>
 		</div>
-		<form>		
-			<h2 align = "center">Online Banking Modified</h2>
+		<form class = "box">		
+			<h1 align = "center">회원 정보 수정</h1>
 			<input type = "hidden" name = "idx" value = ${user.idx}>
 			<table  align = "center">
 				<tr>
-					<th> User ID : </th>
+					<th> 아이디 : </th>
 					<td><input id = "id" name = "id" value = ${user.id} readonly></td>
 				</tr>
 				<tr>
-					<th> User Password : </th>
+					<th> 비밀번호 : </th>
 					<td><input type = "password" id = "pwd" name = "pwd"></td>
-					<td class = "idpwd"><input type = "button" id = "view" name = "view" value = "View On" onclick = "pwd_view();"></td>		
+					<td class = "idpwd"><input type = "button" id = "view" name = "view" value = "보기" onclick = "pwd_view();"></td>		
 				</tr>
 				<tr>
-					<th> Password Check : </th>
+					<th> 비밀번호 확인 : </th>
 					<td><input type = "password" id = "c_pwd" name = "c_pwd"></td>
 				</tr>				
 				<tr>
-					<th> User Name : </th>
-					<td><input name = "name" value = ${user.name}></td>
+					<th> 이름 : </th>
+					<td><input id = "name" name = "name" value = ${user.name}></td>
 				</tr>
 				<tr>
-					<th> Social Security Number : </th>
-					<td><input name = "ssn1" size = "5" maxlength="6" value=${ssn1} readonly> - <input type = "password" name = "ssn2" size = "7" maxlength="7" value =${ssn2} readonly></td>
+					<th> 주민번호 : </th>
+					<td><input class = "ssn" name = "ssn1" size = "5" maxlength="6" value=${ssn1} readonly> - <input type = "password" class = "ssn" name = "ssn2" size = "7" maxlength="7" value =${ssn2} readonly></td>
 				</tr>
 				<tr>
-					<th> Account Number : </th>
-					<td colspan = "2"><input name = "account1" maxlength= "3"size = "3" value =${account1} readonly> - <input name = "account2" maxlength= "2" size = "2" value =${account2} readonly> - <input name = "account3" maxlength= "6" size = "6" value =${account3} readonly></td>
+					<th> 계좌번호 : </th>
+					<td colspan = "2"><input class = "account" name = "account1" maxlength= "3"size = "3" value =${account1} readonly> - <input class = "account" name = "account2" maxlength= "2" size = "2" value =${account2} readonly> - <input class = "account" name = "account3" maxlength= "6" size = "6" value =${account3} readonly></td>
 				</tr>
 				<tr>
-					<th> Phone Number : </th>
-					<td colspan = "2">(<input name = "tel1" maxlength= "3"size = "3" value =${tel1}>) - <input name = "tel2" maxlength= "4" size = "4" value =${tel2}> - <input name = "tel3" maxlength= "4" size = "4" value =${tel3}></td>
+					<th> 전화번호 : </th>
+					<td colspan = "2">(<input class = "tel" name = "tel1" maxlength= "3"size = "3" value =${tel1}>) - <input class = "tel" name = "tel2" maxlength= "4" size = "4" value =${tel2}> - <input class = "tel" name = "tel3" maxlength= "4" size = "4" value =${tel3}></td>
 				</tr>		
 				<tr>
-					<th> Email : </th>
-					<td colspan = "2"><input name = "email1" maxlength= "9" size = "6" value =${email1}> @ <input name = "email2" size = "13" value =${email2}></td>
+					<th> 이메일 : </th>
+					<td colspan = "2"><input class = "email" name = "email1" maxlength= "9" size = "6" value =${email1}> @ <input class = "email" name = "email2" size = "13" value =${email2}></td>
 				</tr>		
 				<tr>
 					<th rowspan = "3"> Address : </th>
 					<!-- 주소 찾기 API --> 
-					<td>
-						<input type="text" id="postcode" placeholder="Postcode" value=${user.postcode} readonly>
-						<input type="button" id = "find_addr" onclick="DaumPostcode_API();" value="Find">
-					</td>
+
+					<td><input type="text" id="postcode" placeholder="Postcode" value=${user.postcode} readonly></td>
+					<td><input type="button" id = "find_addr" onclick="DaumPostcode_API();" value="찾기"></td>
+					
 				</tr>
 				<tr>
 					<td>						
-						<input type="text" name = "roadAddr" id="roadAddr" placeholder="Address" size="30" value = '${addr1}' readonly>
-						<input type="hidden" name = "jibunAddr" id="jibunAddr" placeholder="Address"  size="30" value = '${addr1}' readonly>
+						<input type="text" name = "roadAddr" id="roadAddr" placeholder="주소" size="30" value = '${addr1}' readonly>
+						<input type="hidden" name = "jibunAddr" id="jibunAddr" placeholder="주소"  size="30" value = '${addr1}' readonly>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<input type="text" name = "detailAddr" id="detailAddr" placeholder="Detail Address"  value = '${addr2}' size="30">
+						<input type="text" name = "detailAddr" id="detailAddr" placeholder="상세 주소"  value = '${addr2}' size="30">
 						<input type="hidden" name = "extraAddr" id="extraAddr" placeholder="참고항목"  size="30">
 					</td>
 				</tr>
@@ -226,8 +237,8 @@
 			</table>
 			
 			<div align = "center">
-				<input class = "btn" type = "button" value = "Update" onclick="user_info(this.form);">
-				<input class = "btn" type = "button" value = "Cancel" onclick="history.go(-1);">
+				<input class = "btn" type = "button" value = "수정" onclick="user_info(this.form);">
+				<input class = "btn" type = "button" value = "취소" onclick="history.go(-1);">
 			</div>
 		</form>	
 		

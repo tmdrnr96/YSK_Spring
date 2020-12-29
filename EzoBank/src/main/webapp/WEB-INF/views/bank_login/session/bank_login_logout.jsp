@@ -7,12 +7,7 @@
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
 		<style type="text/css">
-		
-		body{
-			background-color:grey;
-   			background-size: cover;	
-	   		height: 20px;
-	   		 }
+
 		
 	   #main_list{
 			width: 1200px;
@@ -24,18 +19,15 @@
 		.log{
 			text-align: right;
 			margin-top: 50px;
-			margin-right: 50px;
-			color:#fff;		
+			margin-right: 20px;
+			color:#fff;	
 			}
 			
-		#log_off{
-			margin-right: 50px;
-		}	
-			
+		
 		img.title_icon{
 			position:absolute;
-			left:50px;
-			top:50px;
+			left:30px;
+			top:40px;
 		}
 		  	
 		.loglink{
@@ -59,7 +51,7 @@
 			color: white;
 		}
 		
-		#name{
+		#user{
 			font-weight: bold;
 		}		
 		</style>
@@ -75,18 +67,18 @@
 			f.method = "post";
 			f.submit();
 			
-		}
+		} 
 		</script>
 	</head>
 	<body>
-	
+
 	<!-- 입금, 출금, 계좌내역(잔금) - 메인 페이지를 제외한 모든 페이지 적용   -->	
 	<c:if test="${empty sessionScope.user}">
 		<div id = "main_list">
-			<div class = "log" id = "log_off">
+			<div class = "log">
 				<a class="loglink" href="#">이조뱅크?</a>			
 			&nbsp;|&nbsp;
-				<a class="loglink" href = "login.do">로그인</a>		
+				<a class="loglink" href = "login.do;">로그인</a>		
 			</div>	
 		</div>
 	</c:if>    
@@ -98,7 +90,7 @@
 		</form>			
 			<div id = "main_list">
 				<div class = "log">
-					<span id = "login"><span id = "name">${user.name}</span>님 안녕하세요.</span>
+					<span id = "login"><span id = "user">${user.name}</span>님 안녕하세요.</span>
 					&nbsp;|&nbsp;
 						<a class="loglink" href="#">계좌상세정보</a>	
 					&nbsp;|&nbsp;
@@ -108,11 +100,11 @@
 				</div>
 			</div>		
 		</c:if>	
-		
 		<div class = "img">
 			<a id = "img" href="main.do">
 	            <img class="title_icon" src="${pageContext.request.contextPath}/resources/img/logo_1.png";>
 	        </a>
 	    </div>	
+		
 	</body>
 </html>

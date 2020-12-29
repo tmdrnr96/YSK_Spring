@@ -6,20 +6,26 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8">
+		<meta charset="UTF-8"> 
 		<title>Online Banking Enrollment</title>
 		
 		<!--bank_join_form.css 스타일 시트 참조  -->
-		<link rel = "stylesheet" href="${pageContext.request.contextPath}/resources/css/bank_join_form.css">
+		<link rel = "stylesheet" href="${pageContext.request.contextPath}/resources/css/bank_sign_up_form.css">
 		
 		<!-- Ajax 사용 준비 -->
 		<script src="${pageContext.request.contextPath}/resources/js/httpRequest.js"></script>
 		
 		<!--주소 찾기 API  -->
 		<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+
+		<!-- (임시)배경화면 적용이 잘 안됨..ㅜㅜ  -->
+		<style type="text/css">		
+		  body{background-image: url(resources/img/bank_building.jpg);
+  		  background-size: cover; 
+  		  }
+  		  
+		</style>
 		
-		<!--제이쿼리 적용..?  -->
-		<script src="http://code.jquery.com/jquery-latest.js"></script>
 	
 		<script type="text/javascript">	
 	
@@ -104,13 +110,13 @@
 			pwd.type = 'text';
 			c_pwd.type = 'text';			
 			on_off = 'off';
-			view.value = 'View Off';
+			view.value = '끄기';
 			
 		}else if(on_off == 'off'){
 			pwd.type = 'password';
 			c_pwd.type = 'password';			
 			on_off = 'on';
-			view.value = 'View On';
+			view.value = '보기';
 		}
 
 	}
@@ -220,69 +226,67 @@
 			 				 	
 			}
 	
-/*------------------------- 회원가입 ------------------------- */		
-		
-		</script>
-		
+/*------------------------- 회원가입 ------------------------- */				
+		</script>		
 	</head>
 	<body>
 		<div class="login" align="center">
 			<jsp:include page="../bank_login/session/bank_login_logout.jsp"/>
 		</div>
-		<form>
-			<h2 align = "center">Online Banking Enrollment</h2>
+		<form class = "box" id = "joining">
+			<h1 align = "center">EzoBank 회원가입</h1>
 			<p align = "center">* Please enter your account information.</p>
 
-			<table  align = "center">
+		<div id = "div_box">
+			<table  id = "table" align = "center">
 				<tr>
-					<th> User ID : </th>
-					<td><input id = "id" name = "id"></td>
-					<td class = "idpwd"><input type = "button" id = "c_id" name = "c_id" value = "Check" onclick = "id_check();"></td>
+					<th> 아이디 : </th>
+					<td><input type = "text" id = "id" name = "id"></td>
+					<td class = "idpwd"><input type = "button" id = "c_id" name = "c_id" value = "확인" onclick = "id_check();"></td>
 				</tr>
 				<tr>
-					<th> User Password : </th>
-					<td><input type = "password" id = pwd name = "pwd"></td> 
-					<td class = "idpwd"><input type = "button" id = "view" name = "view" value = "View On" onclick = "pwd_view();"></td>		
+					<th> 비밀번호 : </th>
+					<td><input type = "password" id = "pwd" name = "pwd"></td> 
+					<td class = "idpwd"><input type = "button" id = "view" name = "view" value = "보기" onclick = "pwd_view();"></td>		
 				</tr>
 				<tr>
-					<th> Password Check : </th>
-					<td><input type = "password" id = c_pwd name = "c_pwd"></td>
+					<th> 비밀번호 확인 : </th>
+					<td><input type = "password" id = "c_pwd" name = "c_pwd"></td>
 				</tr>				
 				<tr>
-					<th> User Name : </th>
-					<td><input name = "name"></td>
+					<th> 이름 : </th>
+					<td><input type = "text" id = "name" name = "name"></td>
 				</tr>
 				<tr>
-					<th> Social Security Number : </th>
-					<td><input name = "ssn1" size = "5" maxlength="6"> - <input type = "password" name = "ssn2" size = "7" maxlength="7"></td>
+					<th> 주민번호 : </th>
+					<td><input type = "text" class = "ssn" name = "ssn1" size = "5" maxlength="6"> - <input type = "password" class = "ssn" name = "ssn2" size = "7" maxlength="7"></td>
 				</tr>
 				<tr>
-					<th> Phone Number : </th>
-					<td colspan = "2">(<input name = "tel1" maxlength= "3"size = "3">) - <input name = "tel2" maxlength= "4" size = "4"> - <input name = "tel3" maxlength= "4" size = "4"></td>
+					<th> 전화번호 : </th>
+					<td colspan = "2">(<input type = "text" class = "tel" name = "tel1" maxlength= "3"size = "3">) - <input  type = "text" class = "tel" name = "tel2" maxlength= "4" size = "4"> - <input type = "text" class = "tel" name = "tel3" maxlength= "4" size = "4"></td>
 				</tr>		
 				<tr>
-					<th> Email : </th>
-					<td colspan = "2"><input name = "email1" maxlength= "9" size = "6"> @ <input name = "email2" size = "13"></td>
+					<th> 이메일 : </th>
+					<td colspan = "2"><input type = "text" class = "email" name = "email1" maxlength= "9" size = "6"> @ <input type = "text" class = "email" name = "email2" size = "13"></td>
 				</tr>		
 				<tr>
-					<th rowspan ="3"> Address : </th>
+					<th rowspan ="3"> 주소 : </th> 
 					
 				<!-- 주소 찾기 API --> 
-					<td>
-						<input type="text" id="postcode" placeholder="Postcode" readonly>
-						<input type="button" id = "find_addr" onclick="DaumPostcode_API();" value="Find">
-					</td>
+					
+					<td><input type="text" id="postcode" placeholder="우편번호" size = "20" readonly></td>
+					<td><input type="button" id = "find_addr" onclick="DaumPostcode_API();" value="찾기"></td>					
 				</tr>
 				<tr>
 					<td>						
-						<input type="text" name = "roadAddr" id="roadAddr" placeholder="Address" size="30" readonly>
-						<input type="hidden" name = "jibunAddr" id="jibunAddr" placeholder="Address"  size="30"readonly>
+						<input type="text" name = "roadAddr" id="roadAddr" placeholder="주소" size="25" readonly>
+						<input type="hidden" name = "jibunAddr" id="jibunAddr" placeholder="주소"  size="25"readonly>
 					</td>
 				</tr> 
 				<tr>
 					<td>
-						<input type="text" name = "detailAddr" id="detailAddr" placeholder="Detail Address"  size="30">
-						<input type="hidden" name = "extraAddr" id="extraAddr" placeholder="참고항목"  size="30">
+						<input type="text" name = "detailAddr" id="detailAddr" placeholder="상세 주소"  size="25">
+						<input type="hidden" name = "extraAddr" id="extraAddr" placeholder="참고항목"  size="25">
 					</td>
 				</tr>
 				<tr>
@@ -292,13 +296,14 @@
 				</tr>
 				<tr>
 					<td align = "right" colspan = "3">
-						<input type = "checkbox" id ="checkbox" value = "">Agree
+						<input type = "checkbox" id ="checkbox" value = "">동의
 						<!-- <input type = "radio" name ="agree" value = "N">DisAgree -->
 					</td>
 				</tr>
 				
 				<!-- 계좌번호, 잔액 , 날짜 -->
 			</table>
+			</div>
 			<div align = "center">
 				<input class = "btn" type = "button" value = "Sign up" onclick="join(this.form);">
 				<input class = "btn" type = "button" value = "Cancel" onclick="history.go(-1);">

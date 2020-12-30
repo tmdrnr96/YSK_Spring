@@ -8,9 +8,10 @@
 		
 		<script src="${pageContext.request.contextPath}/resources/js/httpRequest.js"></script>
 		
-		<script type="text/javascript">
+		<script type="text/javascript">		
 		
-		//비밀번호 수정(기존 비밀번호는 사용 x) 
+		<!-- 비밀번호 찾기에 성공할 시에 비밀번호 변경 -->		
+		//비밀번호 수정
 		function change(f) {
 						
 			var ssn = f.ssn.value;
@@ -49,29 +50,26 @@
 			return;
 			}
 		}
-			
-		
-	
-		
+				
 		</script>
 	</head>
 	<body>
-		<h2 align = "center" >Change Password</h2>
+		<h2 align = "center" >비밀번호 변경 </h2>
 		<form>
 			<input type = "hidden" name = "ssn" value = "${param.ssn}">
 			<table align = "center">
 				<tr>
-					<th>New Password : </th>
+					<th>새로운 비밀번호 : </th>
 					<td><input type = "password" id = "pwd" name = "pwd"></td>
 				</tr>
 				<tr>
-					<th>Confirm Password : </th>
+					<th>비밀번호 확인 : </th>
 					<td><input type = "password" id = "c_pwd" name = "c_pwd"></td>
 				</tr>
 				<tr>
 					<td colspan = "2" align = "center">
-						<input type= "button" class = "btn" value = "Change" onclick = "change(this.form);">
-						<input type= "button" class = "btn" value = "Cancel" onclick = window.close();>
+						<input type= "button" class = "btn" value = "확인" onclick = "change(this.form);">
+						<input type= "button" class = "btn" value = "취소" onclick = window.close();>
 					</td>
 				</tr>
 			</table>

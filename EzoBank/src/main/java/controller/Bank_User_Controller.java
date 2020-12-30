@@ -29,6 +29,9 @@ BankDAO bank_dao;
 	@RequestMapping("/user_info.do")
 	public String user_info_update(Model model) {
 		
+		//로그인을 통해 session에 저장된 값인 user를 불러온다. 
+		//회원 정보 수정에 필요한 정보를 session에서 꺼내서 
+		//회원 수정폼에 맞게 변수에 값을 저장
 		BankVO vo = (BankVO) session.getAttribute("user");
 		
 		//주민번호
@@ -73,10 +76,12 @@ BankDAO bank_dao;
 		return WEB_PATH + "bank_user_update.jsp";
 	}
 	
-	@RequestMapping("user_modified.do")
+	//회원 정보 수정
+	@RequestMapping("/user_modified.do")
 	@ResponseBody
 	public String user_modified(BankVO vo, String ssn, String account, String tel, String email) {
 		
+		//수정 폼에 입력된 값들을 해당하는 유저 DB를 수정한다.
 		vo.setSsn(ssn);
 		vo.setAccount(account);
 		vo.setTel(tel);

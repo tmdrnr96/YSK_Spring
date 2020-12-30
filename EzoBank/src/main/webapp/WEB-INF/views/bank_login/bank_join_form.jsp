@@ -35,8 +35,10 @@
         new daum.Postcode({
             oncomplete: function(data) {
 
-                var extraRoadAddr = ''; // 참고 항목 변수
-
+            	// 참고 항목 변수 : 주소 입력시 괄호 안에 들어 갈 내용
+            	//ex)서울 서대문구 성산로 450-2(신촌동) <- 괄호안에 내용
+                var extraRoadAddr = ''; 
+        
                 // 참고 항목변수에 추가
                 if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
                    extraRoadAddr += data.bname;
@@ -105,7 +107,7 @@
 	var on_off = 'on';
 		
 	function pwd_view() {
-		
+		//비밀번호 입력시 옆에 있는 버튼을 누를 때마다 type을 변경(password -> text || text -> password) 
 		if(on_off == 'on'){
 			pwd.type = 'text';
 			c_pwd.type = 'text';			

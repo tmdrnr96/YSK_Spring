@@ -4,9 +4,11 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<!--ID 찾기  -->
 		<title>Find_User_ID</title>
 		
 		<link rel = "stylesheet" href="${pageContext.request.contextPath}/resources/css/bank_find_id_form.css">
+		
 		<!-- Ajax 사용 준비 -->
 		<script src="${pageContext.request.contextPath}/resources/js/httpRequest.js"></script>
 		
@@ -57,20 +59,20 @@
 	</head>
 	<body>
 		<form class = "box">
-				<h1 align = "center">Find User ID</h1>
+				<h1 align = "center">아이디 찾기</h1>
 			<table align = "center">
 				<tr>
-					<th>User Name : </th>
+					<th>이름 : </th>
 					<td><input type = "text" id = "name" name = "name"></td>
 				</tr>
 				<tr>
-					<th>Social Security Number : </th>
+					<th>주민 번호 : </th>
 					<td><input type = "text" class = "ssn" id = "ssn1" name = "ssn1" maxlength="6" size = "6"> - <input type = "password" class = "ssn" id = "ssn2" name = "ssn2" maxlength="7" size = "7"></td>
 				</tr>
 				<tr>
 					<td colspan = "2" align = "center">
-					<input type = "button" class = "btn" value = "Find" onclick = "find_id(this.form);">
-					<input type = "button" class = "btn" value = "Cancel" onclick = window.close();>
+					<input type = "button" class = "btn" value = "찾기" onclick = "find_id(this.form);">
+					<input type = "button" class = "btn" value = "취소" onclick = window.close();>
 					</td>			
 				</tr>
 			</table>

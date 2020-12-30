@@ -82,7 +82,8 @@
 		</script>
 	</head>
 	<body>
-	<div class="login" align="center">
+		<!-- 로그인, 로그 아웃 서브메뉴를 띄워줄 JSP  -->
+		<div class="login" align="center">
 			<jsp:include page="../bank_login/session/bank_login_logout.jsp"/>
 		</div>
 		<div class = "box">

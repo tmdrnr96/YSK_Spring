@@ -16,7 +16,7 @@
 		<!--bank_join_form.css 스타일 시트 참조  -->
 		<link rel = "stylesheet" href="${pageContext.request.contextPath}/resources/css/bank_user_update.css">
 		
-		<!-- (임시)배경화면 적용이 잘 안됨..ㅜㅜ  -->
+		<!-- (임시)배경화면 적용이 잘 안됨..-->
 		<style type="text/css">		
 		  body{background-image: url(resources/img/bank_building.jpg);
   		  background-size: cover; 

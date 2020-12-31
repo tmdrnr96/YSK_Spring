@@ -40,6 +40,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	
+	
+	<select id="bank_list" resultType="bank">
+		select * from bank
+	</select>
+	
+	<select id="bank_selectone_idx" resultType="bank" parameterType="int">
+		select * from bank where idx=#{idx}
+	</select>
+	
+	<select id="bank_selectone_acc" resultType="bank" parameterType="java.lang.String">
+		select * from bank where account=#{acc}
+	</select>
+	
+	<update id="update_deposit" parameterType="java.util.Map">
+		update bank set balance = balance + #{amount} where idx=#{idx}
+	</update>
+	
+	<update id="update_withdrawal" parameterType="java.util.Map">
+		update bank set balance = balance - #{amount} where idx=#{idx}
+	</update>
+	
 </mapper>
 
 

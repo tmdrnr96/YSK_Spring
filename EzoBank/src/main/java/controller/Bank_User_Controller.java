@@ -14,8 +14,8 @@ import vo.BankVO;
 @Controller
 public class Bank_User_Controller {
 
-BankDAO bank_dao;
-	
+	BankDAO bank_dao;
+
 	@Autowired
 	HttpSession session;
 	

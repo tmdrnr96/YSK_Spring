@@ -80,6 +80,22 @@
 			f.submit();
 			
 		} 		
+		
+		function account(n) {
+			location.href="accountInfo_page.do?idx="+n;
+		}
+		
+		function deposit(n) {
+			location.href="deposit_page.do?idx="+n;//입금
+		}
+		
+		function withdrawal(n) {
+			location.href="withdrawal_page.do?idx="+n;//출금
+		}
+		function transfer(n) {
+			location.href="transfer_page.do?idx="+n;//이체
+		}
+
 		</script>
 	</head>
 	<body>
@@ -109,9 +125,9 @@
 						<li>	
 							<a class="loglink" href="#">계좌상세정보 </a>
 						    <ul>
-								<li><a class = "loglink" href = "#">입금</a></li>
-								<li><a class = "loglink" href = "#">출금</a></li>
-								<li><a class = "loglink" href = "#">이체</a></li>
+								<li><a class = "loglink" href = "javascript:deposit('${user.idx}');">입금</a></li>
+								<li><a class = "loglink" href = "javascript:withdrawal('${user.idx}');">출금</a></li>
+								<li><a class = "loglink" href = "javascript:transfer('${user.idx}');">이체</a></li>
 								<li><a class = "loglink" href = "#">거래 내역</a></li>
 								<li><a class = "loglink" href = "#">잔액 조회</a></li>								
 							</ul>	

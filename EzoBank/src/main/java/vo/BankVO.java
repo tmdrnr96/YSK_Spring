@@ -5,18 +5,16 @@ public class BankVO {
 	private int idx;
 	private String name;
 	private String ssn;
-	private String tel;
-	
+	private String tel;	
 	private String email;
 	private String addr;
 	private String id;
 	private String pwd;
 	private String account;
+	private int balance;	
 	private String ip;
 	private String regdate;	
-	private String postcode;
-	
-	private int balance;
+	private String postcode;	
 	
 	public String getIp() {
 		return ip;

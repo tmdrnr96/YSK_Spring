@@ -42,7 +42,7 @@ public class Bank_login_Controller {
 	
 	
 	//로그인 페이지
-	@RequestMapping(value = {"/","/login.do"})
+	@RequestMapping("/login.do")
 	public String login() {
 		
 		return WEB_PATH + "bank_login_form.jsp";
@@ -243,7 +243,7 @@ public class Bank_login_Controller {
 	}
 	
 	//메인 화면
-	@RequestMapping("/main.do")
+	@RequestMapping(value={"/","/main.do"})
 	public String main() {		
 		return "/WEB-INF/views/main/main.jsp";
 	}

@@ -1,12 +1,20 @@
 package dao;
 
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import vo.BankVO;
 
+@Repository
 public class BankDAO {
-
+	
+	@Autowired
 	SqlSession sqlSession;
 	
 	public void setSqlSession(SqlSession sqlSession) {
@@ -52,6 +60,40 @@ public class BankDAO {
 	//회원정보 수정
 	public int user_modified(BankVO vo) {
 		int res = sqlSession.update("bank.bank_info_update",vo);		
+		return res;
+	}
+	
+	public List<BankVO> select(){
+		List<BankVO> list = sqlSession.selectList("bank.bank_list");
+		return list;
+	}
+	
+	public BankVO selectone(int idx) {
+		BankVO vo = sqlSession.selectOne("bank.bank_selectone_idx", idx);
+		return vo;
+	}
+	
+	public BankVO selectone(String acc) {
+		BankVO vo = sqlSession.selectOne("bank.bank_selectone_acc", acc);
+		return vo;
+	}
+	
+	//이체
+	//상대방 계좌에 입금
+	public int update_deposit(int idx, int amount) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("idx",idx);
+		map.put("amount",amount);
+		int res = sqlSession.update("bank.update_deposit", map);
+		return res;
+	}
+	//이체
+	//나의 계좌에서 출금
+	public int update_withdrawal(int idx, int amount) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("idx",idx);
+		map.put("amount",amount);
+		int res = sqlSession.update("bank.update_withdrawal", map);
 		return res;
 	}
 	

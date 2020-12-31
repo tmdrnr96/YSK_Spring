@@ -22,6 +22,7 @@
 	</beans:bean> -->
 	
 	<!--컨트롤러 자동생성  -->
+	<!-- context:component-scan base-package="dao, controller" /> -->
 	<!-- <context:component-scan base-package="com.korea.db" /> -->
 	
 	<!--컨트롤러를 수동으로 생성중 일 때, Autowired기능을 쓰고 싶다면.. 아래코드를 써줘야 사용이 가능하다.  -->
@@ -29,11 +30,15 @@
 	<context:annotation-config/>
 	
 	<!-- 컨트롤러 수동생성 -->
- 	<beans:bean class = "controller.Bank_login_Controller">		
+ 	 <beans:bean class = "controller.Bank_login_Controller">		
 		<beans:property name="bank_dao" ref = "bank_daoBean"/> 
 	</beans:bean>
 	
 	<beans:bean class = "controller.Bank_User_Controller">		
+		<beans:property name="bank_dao" ref = "bank_daoBean"/> 
+	</beans:bean>
+	
+	<beans:bean class = "controller.BankController">		
 		<beans:property name="bank_dao" ref = "bank_daoBean"/> 
 	</beans:bean>
 	

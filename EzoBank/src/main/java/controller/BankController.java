@@ -18,12 +18,9 @@ import vo.BankVO;
 
 @Controller
 public class BankController {
-
-	BankDAO bank_dao; //bank table DAO
 	
-	public void setBank_dao(BankDAO bank_dao) {
-		this.bank_dao = bank_dao;
-	}
+	@Autowired
+	BankDAO bdao; //bank table DAO
 	
 	//메인페이지
 	//@RequestMapping(value= {"/","/main_page.do"})
@@ -46,7 +43,7 @@ public class BankController {
 	//로그인을 하지 않고 클릭하면 로그인 페이지로 이동해야 함
 	@RequestMapping("/deposit_page.do")
 	public String deposit_page(Model model,int idx) {
-		BankVO vo = bank_dao.selectone(idx);
+		BankVO vo = bdao.selectone(idx);
 		model.addAttribute("vo",vo);
 		return MyCommon.Deposit.VIEW_PATH + "deposit_page.jsp";
 	}
@@ -56,7 +53,7 @@ public class BankController {
 	//로그인을 하지 않고 클릭하면 로그인 페이지로 이동해야 함
 	@RequestMapping("/withdrawal_page.do")
 	public String withdrawal_page(Model model,int idx) {
-		BankVO vo = bank_dao.selectone(idx);
+		BankVO vo = bdao.selectone(idx);
 		model.addAttribute("vo",vo);
 		return MyCommon.Withdrawal.VIEW_PATH + "withdrawal_page.jsp";
 	}
@@ -70,12 +67,12 @@ public class BankController {
 		
 		if(check==1) { // 이 부분에서 accountIfo table에 data넣기(계좌 상세보기, 의미X)
 			//입금 mapper
-			res = bank_dao.update_deposit(idx, amount);
+			res = bdao.update_deposit(idx, amount);
 			
 		}
 		else{
 			//출금 mapper
-			res = bank_dao.update_withdrawal(idx, amount);
+			res = bdao.update_withdrawal(idx, amount);
 		}
 		
 		if(res>0) {
@@ -91,10 +88,10 @@ public class BankController {
 	//로그인을 하지 않고 클릭하면 로그인 페이지로 이동해야 함
 	@RequestMapping("/transfer_page.do")
 	public String transfer_page(int idx, Model model) {
-		BankVO vo = bank_dao.selectone(idx);
+		BankVO vo = bdao.selectone(idx);
 		
 		//전체 회원 list 가져오기
-		List<BankVO> list = bank_dao.select();
+		List<BankVO> list = bdao.select();
 		
 		//전체 회원의 계좌를 저장하기 위한 list
 		List<String> account = new ArrayList<String>();
@@ -116,7 +113,7 @@ public class BankController {
 	public String transfer_account(int idx,String acc) {
 		String result = "";
 			
-		BankVO vo = bank_dao.selectone(acc); //입력받은 계좌 vo받기
+		BankVO vo = bdao.selectone(acc); //입력받은 계좌 vo받기
 		
 		if(vo==null) { // 입력한 계좌가 존재하지 않다면 null을 return
 			return null;
@@ -134,10 +131,10 @@ public class BankController {
 	//이체하기를 완료하기 위한 idxMe : 내 idx , idxYou : 이체하기 위한 상대방 idx
 	@RequestMapping("/transfer_money_page.do")
 	public String transfer_money_page(Model model, int idxMe, int idxYou) {
-		BankVO voMe = bank_dao.selectone(idxMe);
+		BankVO voMe = bdao.selectone(idxMe);
 		model.addAttribute("voMe",voMe);
 		
-		BankVO voYou = bank_dao.selectone(idxYou);
+		BankVO voYou = bdao.selectone(idxYou);
 		model.addAttribute("voYou",voYou);
 		
 		return MyCommon.Transfer.VIEW_PATH + "transfer_money_page.jsp";
@@ -149,8 +146,8 @@ public class BankController {
 	public String transfer_amount(int idxMe, int idxYou, int amount) {
 		int res = 0;
 		
-		res = bank_dao.update_deposit(idxYou, amount); // 상대방 계좌 입금
-		res = bank_dao.update_withdrawal(idxMe, amount); // 내 계좌 출금
+		res = bdao.update_deposit(idxYou, amount); // 상대방 계좌 입금
+		res = bdao.update_withdrawal(idxMe, amount); // 내 계좌 출금
 		
 		String result = "";
 		

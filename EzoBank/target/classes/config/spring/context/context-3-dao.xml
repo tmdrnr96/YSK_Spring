@@ -4,8 +4,8 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	
-	<bean id = "bank_daoBean" class = "dao.BankDAO">
+	<!-- <bean id = "bank_daoBean" class = "dao.BankDAO">
 		<property name="sqlSession" ref = "sqlSessionBean"/>
-	</bean>
+	</bean> -->
 	
 </beans>

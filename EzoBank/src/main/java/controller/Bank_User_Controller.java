@@ -13,15 +13,12 @@ import vo.BankVO;
 
 @Controller
 public class Bank_User_Controller {
-
+	
+	@Autowired
 	BankDAO bank_dao;
 
 	@Autowired
 	HttpSession session;
-	
-	public void setBank_dao(BankDAO bank_dao) {
-		this.bank_dao = bank_dao;
-	}
 	
 	public static final String WEB_PATH = "/WEB-INF/views/bank_user/";
 	

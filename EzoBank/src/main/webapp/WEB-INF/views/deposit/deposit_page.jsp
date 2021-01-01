@@ -7,9 +7,10 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<%@ include file= "../bank_login/session/bank_login_logout.jsp" %>
 		<title>Deposit</title>
 		
-		<link href="${ pageContext.request.contextPath }/resources/css/bank.css" rel="stylesheet">
+		<link href="${ pageContext.request.contextPath }/resources/css/ezo_bank.css" rel="stylesheet">
 		
 		<script type="text/javascript" src="${ pageContext.request.contextPath }/resources/js/httpRequest.js"></script>
 		
@@ -90,20 +91,17 @@
 		</script>
 	</head>
 	
-	<body>
-    
-    <div class="title">
-        <a href="main.do">
-           <img class="title_icon" src="${ pageContext.request.contextPath }/resources/img/logo.png">
-        </a>
-       
-           <ul>
-                <li><a href="withdrawal_page.do?idx=${ vo.idx }">출금</a></li>
-                <li><a href="account_info.do?idx=${ vo.idx }">계좌상세정보</a></li>
-            </ul>
-    </div>
-    
-    <div align="center" class="num">
+	<body>   
+	
+		<!--로그인 없이 이용 불가능  -->
+		<c:if test="${ empty sessionScope.user}">
+			<script>
+				alert("로그인 후 이용하세요");
+				location.href="login.do";
+			</script>
+		</c:if> 
+	
+   	 <div align="center" class="num">
 			<h1>:::입금:::</h1>
 			<p style="color: white">${ vo.name }님 계좌에 입금하실 금액을 입력해주세요</p>
 			<div>
@@ -127,7 +125,7 @@
 				<input type="button" value="del" onclick="transfer(-10);">
 			</div>
 			
-			<br>
+			<br> 
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			
 			<input type="text" id="amount">

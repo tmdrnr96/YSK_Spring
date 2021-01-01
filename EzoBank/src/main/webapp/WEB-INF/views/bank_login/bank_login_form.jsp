@@ -12,7 +12,6 @@
 		
 		<script src="${pageContext.request.contextPath}/resources/js/httpRequest.js"></script>
 	
-		<!-- (임시)배경화면 적용이 잘 안됨..ㅜㅜ  -->
 		<style type="text/css">		
 		  body{background-image: url(resources/img/bank_building.jpg);
   		  background-size: cover; 
@@ -101,7 +100,7 @@
 						<tr>
 							<td align = "center">
 								<input type = "button" class = "btn_log" value = "로그인" onclick = "sign(this.form);" >					
-								<input type = "button" class = "btn_cancel" value = "닫기" onclick = "history(-1);" >
+								<input type = "button" class = "btn_cancel" value = "닫기" onclick = "history.go(-1);" >
 							</td>
 						</tr>	
 					</table>

@@ -7,6 +7,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"> 
+		
 		<title>Online Banking Enrollment</title>
 		
 		<!--bank_join_form.css 스타일 시트 참조  -->
@@ -31,7 +32,7 @@
 	
 /*------------------------- 주소 찾기 API ------------------------- */
 		
-    function DaumPostcode_API() {
+    function DaumPostcode_API() {	
         new daum.Postcode({
             oncomplete: function(data) {
 
@@ -231,7 +232,7 @@
 /*------------------------- 회원가입 ------------------------- */				
 		</script>		
 	</head>
-	<body>
+	<body>	 
 		<div class="login" align="center">
 			<jsp:include page="../bank_login/session/bank_login_logout.jsp"/>
 		</div>
@@ -249,7 +250,7 @@
 				<tr>
 					<th> 비밀번호 : </th>
 					<td><input type = "password" id = "pwd" name = "pwd"></td> 
-					<td class = "idpwd"><input type = "button" id = "view" name = "view" value = "보기" onclick = "pwd_view();"></td>		
+					<td rowspan = "2" class = "idpwd"><input type = "button" id = "view" name = "view" value = "보기" onclick = "pwd_view();"></td>		
 				</tr>
 				<tr>
 					<th> 비밀번호 확인 : </th>
@@ -307,8 +308,8 @@
 			</table>
 			</div>
 			<div align = "center">
-				<input class = "btn" type = "button" value = "Sign up" onclick="join(this.form);">
-				<input class = "btn" type = "button" value = "Cancel" onclick="history.go(-1);">
+				<input class = "btn" type = "button" value = "가입" onclick="join(this.form);">
+				<input class = "btn" type = "button" value = "취소" onclick="history.go(-1);">
 			</div>
 		</form>
 	</body>

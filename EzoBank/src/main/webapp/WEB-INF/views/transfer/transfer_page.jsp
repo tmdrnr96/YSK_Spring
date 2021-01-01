@@ -7,9 +7,10 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<%@ include file= "../bank_login/session/bank_login_logout.jsp" %>
 		<title>Transfer</title>
 		
-		<link href="${ pageContext.request.contextPath }/resources/css/bank.css" rel="stylesheet">
+		<link href="${ pageContext.request.contextPath }/resources/css/ezo_bank.css" rel="stylesheet">
 		
 		<script type="text/javascript" src="${ pageContext.request.contextPath }/resources/js/httpRequest.js"></script>
 		
@@ -85,11 +86,14 @@
 	</head>
 	
 	<body>
-		<div class="title">
-	        <a href="main_page.do">
-	           <img class="title_icon" src="${ pageContext.request.contextPath }/resources/img/logo.png">
-	        </a>
-        </div>
+		
+		<!--로그인 없이 이용 불가능  -->
+		<c:if test="${ empty sessionScope.user}">
+			<script>
+				alert("로그인 후 이용하세요");
+				location.href="login.do";
+			</script>
+		</c:if> 
         
 		<div align="center" class="num">
 			<h1>:::이체:::</h1>

@@ -15,11 +15,20 @@
 		a{text-decoration: none;}
 		
 		table{border-collapse:collapse;}
-			
-		img.title_icon{
-				position:absolute;
-				left:0px;
-				top:0px;}
+		 
+		 .title{
+			    top: 0;
+			    left: 0;
+			    right: 0;
+			    position: fixed; 
+				}
+						
+		.title_icon{
+		    float: left;
+		    margin-left: 50px;
+				}
+
+		#title_icon{position: fixed;}
 			
 		#user_name{ font-weight: bold;}	
 		
@@ -81,19 +90,56 @@
 			
 		} 		
 		
-		function account(n) {
-			location.href="accountInfo_page.do?idx="+n;
+		function account(idx) {
+			//location.href POST방식으로 파라미터 숨겨 보내기
+			var f = document.post;
+			
+			f.idx.value = idx;
+			
+			f.actcion = "accountInfo_page.do";
+			f.method = "post";
+			f.submit();
+			
+			//get방식
+			//location.href="accountInfo_page.do?idx="+n;
 		}
 		
-		function deposit(n) {
-			location.href="deposit_page.do?idx="+n;//입금
+		function deposit(idx) {
+			//location.href POST방식으로 파라미터 숨겨 보내기
+			var f = document.post;
+			
+			f.idx.value = idx;
+			
+			f.action = "deposit_page.do";
+			f.method = "post";
+			f.submit();
+
+			//location.href="deposit_page.do?idx="+n;//입금
 		}
 		
-		function withdrawal(n) {
-			location.href="withdrawal_page.do?idx="+n;//출금
+		function withdrawal(idx) {
+			
+			var f = document.post;
+			
+			f.idx.value = idx;
+			
+			f.action = "withdrawal_page.do";
+			f.method = "post";
+			f.submit();
+			
+			//location.href="withdrawal_page.do?idx="+n;//출금
 		}
-		function transfer(n) {
-			location.href="transfer_page.do?idx="+n;//이체
+		function m_transfer(idx) {
+
+			var f = document.post;
+			
+			f.idx.value = idx;
+			
+			f.action = "transfer_page.do";
+			f.method = "post";
+			f.submit();
+			
+			//location.href="transfer_page.do?idx="+n;//이체
 		}
 
 		</script>
@@ -102,44 +148,39 @@
 	<!-- 로그인, 로그 아웃 서브메뉴를 띄워줄 JSP  -->
 	<!-- 입금, 출금, 이체, 거래내역, 잔액 조회 등 모든 페이지 적용 (jsp:include)  -->	
 	<c:if test="${empty sessionScope.user}">
-		<div id = "main_list">
-			<div class = "log">
-				<ul class = "submenu">
-					<li><a class="loglink" href = "login.do;">로그인</a></li>		
-					<li><a class="loglink" href="#">이조뱅크?</a></li>			
-				</ul>
-			</div>	
-		</div>
+	<div class = "title">		
+		<ul class = "submenu">
+			<li><a class="loglink" href = "login.do;">로그인</a></li>		
+			<li><a class="loglink" href="#">이조뱅크?</a></li>			
+		</ul>			
+	</div>	
 	</c:if>
-	
 	<c:if test = "${!empty sessionScope.user}">
 		<!--회원 정보 수정을 위한 idx -->
 		<form name = "post">
 			<input type="hidden" value = "${user.idx}" name = "idx" >
 		</form>			
-			<div id = "main_list">
-				<div class = "log">
-					<ul class = "submenu">
-						<li><a class="loglink" href = "logout.do;">로그아웃</a></li>			
-						<li><a class="loglink" href="javascript:user_info_update('${user.idx}');">회원정보수정</a></li>
-						<li>	
-							<a class="loglink" href="#">계좌상세정보 </a>
-						    <ul>
-								<li><a class = "loglink" href = "javascript:deposit('${user.idx}');">입금</a></li>
-								<li><a class = "loglink" href = "javascript:withdrawal('${user.idx}');">출금</a></li>
-								<li><a class = "loglink" href = "javascript:transfer('${user.idx}');">이체</a></li>
-								<li><a class = "loglink" href = "#">거래 내역</a></li>
-								<li><a class = "loglink" href = "#">잔액 조회</a></li>								
-							</ul>	
-						</li>
-						<li><span id = "login"><span id = "user_name">${user.name}</span>님 안녕하세요.</span></li>
-					</ul>
-				</div>
-			</div>		
+			<div class = "title">
+			<ul class = "submenu">
+				<li>	
+					<a class="loglink" href="#">계좌상세정보 </a>
+				    <ul>
+						<li><a class = "loglink" href = "javascript:deposit('${user.idx}');">입금</a></li>
+						<li><a class = "loglink" href = "javascript:withdrawal('${user.idx}');">출금</a></li>
+						<li><a class = "loglink" href = "javascript:m_transfer('${user.idx}');">이체</a></li>
+						<li><a class = "loglink" href = "#">거래 내역</a></li>
+						<li><a class = "loglink" href = "#">잔액 조회</a></li>								
+					</ul>	
+				</li>
+				<li><a class="loglink" href="javascript:user_info_update('${user.idx}');">회원정보수정</a></li>
+				<li><a class="loglink" href = "logout.do;">로그아웃</a></li>			
+				<li><span id = "login"><span id = "user_name">${user.name}</span>님 안녕하세요.</span></li>
+			</ul>
+			</div>
 		</c:if>	
-		<div class = "img">
-			<a id = "img" href="main.do">
-	            <img class="title_icon" src="${pageContext.request.contextPath}/resources/img/logo.png";>
+		<div id = "title_icon" >
+			<a href="main.do">
+	            <img class="title_icon" src="${pageContext.request.contextPath}/resources/img/logo.png">
 	        </a>
 	    </div>	
 		

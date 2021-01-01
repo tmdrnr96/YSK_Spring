@@ -2,16 +2,17 @@
 
 body{background-image: url(resources/img/bank_building.jpg);
     background-size: cover; 
-     }
+     }  
+ 
+     
 .box{
   width: 500px;
   padding: 40px;
   position: absolute;
-  top: 60%;
-  left: 50%; 
+  top: 650px;
+  left: 50%;
   transform: translate(-50%,-50%);
   background: #212121;
-
   border: 2px solid black;
   border-radius: 20px;
   color: white;

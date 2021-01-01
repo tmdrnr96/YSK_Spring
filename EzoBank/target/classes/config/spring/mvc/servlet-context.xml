@@ -12,7 +12,7 @@
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
 
-	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<!--resources를 시작하는 모든 요청은 controller를 거치지 않고  resources폴더에서 바로 찾아라 라는 뜻  -->
 	<resources mapping="/resources/**" location="/resources/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->

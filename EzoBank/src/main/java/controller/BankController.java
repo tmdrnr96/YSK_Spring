@@ -33,7 +33,7 @@ public class BankController {
 	//로그인을 하지 않고 클릭하면 로그인 페이지로 이동해야 함
 	//@RequestMapping("/account_info.do")
 	//public String account_info(Model model) {
-	//	BankVO vo = bank_dao.selectone(1);
+	//	BankVO vo = bdao.selectone(1);
 	//	model.addAttribute("vo",vo);
 	//	return MyCommon.Account.VIEW_PATH + "account_info_page.jsp";
 	//}
@@ -43,6 +43,7 @@ public class BankController {
 	//로그인을 하지 않고 클릭하면 로그인 페이지로 이동해야 함
 	@RequestMapping("/deposit_page.do")
 	public String deposit_page(Model model,int idx) {
+		
 		BankVO vo = bdao.selectone(idx);
 		model.addAttribute("vo",vo);
 		return MyCommon.Deposit.VIEW_PATH + "deposit_page.jsp";

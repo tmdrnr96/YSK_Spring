@@ -187,7 +187,7 @@
 				<tr>
 					<th> 비밀번호 : </th>
 					<td><input type = "password" id = "pwd" name = "pwd"></td>
-					<td class = "idpwd"><input type = "button" id = "view" name = "view" value = "보기" onclick = "pwd_view();"></td>		
+					<td class = "idpwd" rowspan = "2"><input type = "button" id = "view" name = "view" value = "보기" onclick = "pwd_view();"></td>		
 				</tr>
 				<tr>
 					<th> 비밀번호 확인 : </th>

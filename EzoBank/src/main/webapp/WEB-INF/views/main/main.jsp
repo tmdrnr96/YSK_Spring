@@ -9,7 +9,6 @@
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bank_main.css">
 		<style type="text/css">
 		
-		/*배경화면 적용이 잘 안됨.. */
 		body{
 		  background-image: url(resources/img/bank_building.jpg);
   		  background-size: cover;

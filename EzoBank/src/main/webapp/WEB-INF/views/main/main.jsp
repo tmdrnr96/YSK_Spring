@@ -23,7 +23,11 @@
 			<jsp:include page="../bank_login/session/bank_login_logout.jsp"/>
 		</div>
 		
-    <div class="greeting">
+		<div align="center">
+			<jsp:include page="../slide/auto_slide.jsp"/>
+		</div>
+		
+    <!-- <div class="greeting">
         <h1>환영합니다.<br>EzoBank 입니다.</h1>
     </div>
     
@@ -31,6 +35,6 @@
     <div class="other_buttons">
         <span><a href="#" class="main_btn">이체 및 송금</a></span>
         <span><a href="#" class="main_btn">이조뱅크에 대해서</a></span>
-    </div> 
+    </div>  -->
 	</body>
 </html>

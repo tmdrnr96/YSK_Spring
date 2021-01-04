@@ -19,16 +19,26 @@
 		 .title{
 			    top: 0;
 			    left: 0;
-			    right: 0;
-			    position: fixed; 
+			    width:900px;
+			    position: inherit;
+			    float: right;
+			    margin-top:20px;
+			    padding-right: 50px;
+			    /* position: fixed; */
 				}
 						
-		.title_icon{
-		    float: left;
-		    margin-left: 50px;
+		.title_icon{				
+			    float: left;
+			    margin-left: 50px;
 				}
 
-		#title_icon{position: fixed;}
+	 	#title_icon{/* position: fixed; */
+	 			
+	 			margin-top:-20px;
+			    left: 0;
+			    right: 0;
+			    position: inherit;
+			    } 
 			
 		#user_name{ font-weight: bold;}	
 		
@@ -49,6 +59,7 @@
 					margin-left: 5px;
 					width: 180px;
 					margin-top: 40px;
+					z-index: 5
 					}
 		
 		.loglink{display: block;
@@ -147,9 +158,14 @@
 	<body>
 	<!-- 로그인, 로그 아웃 서브메뉴를 띄워줄 JSP  -->
 	<!-- 입금, 출금, 이체, 거래내역, 잔액 조회 등 모든 페이지 적용 (jsp:include)  -->	
+		<div id = "title_icon" >
+			<a href="main.do">
+	            <img class="title_icon" src="${pageContext.request.contextPath}/resources/img/logo.png">
+	        </a>
+	    </div>	
 	<c:if test="${empty sessionScope.user}">
 	<div class = "title">		
-		<ul class = "submenu">
+		<ul class = "submenu" style="display: inline;">
 			<li><a class="loglink" href = "login.do;">로그인</a></li>		
 			<li><a class="loglink" href="#">이조뱅크?</a></li>			
 		</ul>			
@@ -161,7 +177,7 @@
 			<input type="hidden" value = "${user.idx}" name = "idx" >
 		</form>			
 			<div class = "title">
-			<ul class = "submenu">
+			<ul class = "submenu" style="display: inline;">
 				<li>	
 					<a class="loglink" href="#">계좌상세정보 </a>
 				    <ul>
@@ -178,11 +194,6 @@
 			</ul>
 			</div>
 		</c:if>	
-		<div id = "title_icon" >
-			<a href="main.do">
-	            <img class="title_icon" src="${pageContext.request.contextPath}/resources/img/logo.png">
-	        </a>
-	    </div>	
 		
 	</body>
 </html>

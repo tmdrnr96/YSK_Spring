@@ -16,6 +16,7 @@
 	    var slides = document.getElementsByClassName("mySlides");	 
 	    var dots = document.getElementsByClassName("dot");
 	    
+	    	//오른쪽 화살표 누를때
 			function plusSlides() {
 				  slideIndex++;				  				 
 				 
@@ -33,8 +34,25 @@
 				  dots[slideIndex-1].className += " active";
 				  
 				}
-	    				
-			//도트무늬 클릭
+			
+			function minusSlide() {
+			  slideIndex--;
+			 
+			  if (slideIndex < 1) {slideIndex = slides.length}
+			  
+			  for (i = 0; i < slides.length; i++) {	
+			      slides[i].style.display = "none";	
+			  }
+	
+			  for (i = 0; i < dots.length; i++) {
+			      dots[i].className = dots[i].className.replace(" active", "");
+			  }
+	
+			  slides[slideIndex-1].style.display = "block";
+			  dots[slideIndex-1].className += " active";
+
+			}
+			
 			function currentSlide(n) {
 			
 				slideIndex = n;
@@ -53,7 +71,6 @@
 				  dots[slideIndex-1].className += " active";
 			}
 			
-			//2초 간격으로 오른쪽 화살표 누름(자동)
 			setInterval("plusSlides()", 2000);
 		
 		</script>
@@ -64,25 +81,27 @@
 			
 				<div class="mySlides" style="display: block;">			
 					<a href = "#">
-						<img class="main_slideImg" src="${pageContext.request.contextPath}/resources/img/sample1.jpg"
-						 width="250px;" height="150px;">
+						<img class="main_slideImg" src="${pageContext.request.contextPath}/resources/img/sample1.jpg">
 					</a>
 				</div>
 				
 				<div class="mySlides">	
 					<a href = "#">		
-						<img class="main_slideImg" src="${pageContext.request.contextPath}/resources/img/sample2.jpg"
-						 width="250px;" height="150px;">
+						<img class="main_slideImg" src="${pageContext.request.contextPath}/resources/img/sample2.jpg">
 					</a>
 				</div>
 	
 				<div class="mySlides">	
 					<a href = "#">		
-						<img class="main_slideImg" src="${pageContext.request.contextPath}/resources/img/sample3.jpg"
-						 width="250px;" height="150px;">
+						<img class="main_slideImg" src="${pageContext.request.contextPath}/resources/img/sample3.jpg">
 					</a>
-				</div>				
+				</div>
+										
+				<a class="prev" onclick="minusSlide();" style="font-size:2cm;">❮</a>
+				<a class="next"onclick="plusSlides();" style="font-size:2cm;">❯</a>
+					
 			</div>
+			<br>
 			
 			<div id = "dotlist" style="text-align:center">
 			  <span class="dot" onclick="currentSlide(1)"></span> 

@@ -48,7 +48,7 @@
 	
 	#con3{
 		margin-top: 40px;
-		margin-left: 380px;
+		margin-left: 220px;
 	}
 	
 	#content p{
@@ -89,11 +89,11 @@
 	
 	<%-- <c:forEach var="list" items="${vo}"> --%>
 	 	<p id="title"> 입출금 계좌 </p>
-	 	
+	 	<input type = "hidden" value = ${vo.idx} name = "idx">
 	 	<div id="content">
 	 	
 		<p id="con1"> 계좌번호 : ${vo.account }</p>
-		<p id="con3"> 잔액 : ${vo.balance }</p>
+		<p id="con3"> 잔액 : ${vo.balance} 원</p>
 		<p id="con2"> ${vo.name} 통장</p>
 		<input id="det" type="button" value="상세정보" onclick="detail(this.form);"> 
 		

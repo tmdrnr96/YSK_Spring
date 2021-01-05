@@ -15,6 +15,7 @@
 		}
 		</style>
 		
+		
 	</head>
 	
 	<body>
@@ -37,19 +38,19 @@
 				<div class="function_box1">
 					<ul>
 						<li class = "function1">
-							<a href = "#">
+							<a href = "javascript:withdrawal('${user.idx}');">
 								<img class = "bank_image1" alt="출금" src="${pageContext.request.contextPath}/resources/img/withdrawal_image.png" width="80px;" height="80px;" >
 									출금
 							</a>
 						</li>
 						<li class = "function1">
-							<a href = "#">
+							<a href = "javascript:m_transfer('${user.idx}');">
 								<img class = "bank_image1" alt="출금" src="${pageContext.request.contextPath}/resources/img/transfer_image.png" width="80px;" height="80px;" >
 									이체
 							</a>
 						</li>
 						<li class = "function1">
-							<a href = "#">
+							<a href = "javascript:detail('${user.idx}')">
 								<img class = "bank_image1" alt="출금" src="${pageContext.request.contextPath}/resources/img/search_image.png" width="80px;" height="80px;" >
 									잔액조회
 							</a>
@@ -76,7 +77,7 @@
 							EzoBank
 						</a>
 					</li>					
-					<li class = "function2"><a href = "#"><img class = "bank_image2" alt="EzoBank" src="${pageContext.request.contextPath}/resources/img/bank.png" width = "100px;" height="100px;">
+					<li class = "function2"><a href = "join_form.do"><img class = "bank_image2" alt="EzoBank" src="${pageContext.request.contextPath}/resources/img/join.png" width = "100px;" height="100px;">
 							계좌생성
 						</a>
 					</li>
@@ -88,11 +89,11 @@
 			</div>
 		</div>
 		
-		<%-- <footer>
+		<footer>
 			<div id = "footer" align="center">
 				<%@include file="../footer/bank_footer.jsp"%>
 			</div>
-		</footer> --%>
+		</footer>
 	</body>		
 		
     <!-- <div class="greeting">

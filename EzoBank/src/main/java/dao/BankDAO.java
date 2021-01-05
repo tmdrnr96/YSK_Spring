@@ -27,6 +27,11 @@ public class BankDAO {
 		return vo;
 	}
 	
+	public BankVO ssn_selectOne(String ssn) {
+		BankVO vo = sqlSession.selectOne("bank.back_ssn_check",ssn);
+		return vo;
+	}
+		
 	//회원 정보 추가
 	public int insert(BankVO vo) {		
 		int res = sqlSession.insert("bank.bank_account_insert",vo);		
@@ -62,6 +67,7 @@ public class BankDAO {
 		int res = sqlSession.update("bank.bank_info_update",vo);		
 		return res;
 	}
+
 	
 	public List<BankVO> select(){
 		List<BankVO> list = sqlSession.selectList("bank.bank_list");
@@ -96,5 +102,13 @@ public class BankDAO {
 		int res = sqlSession.update("bank.update_withdrawal", map);
 		return res;
 	}
+	
+	//상세보기
+	
+	//bank 안의 내용 출력
+		public BankVO all_selectOne(int idx){
+			BankVO vo = sqlSession.selectOne("bank.bank_all",idx);
+			return vo;	
+		}
 	
 }

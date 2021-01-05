@@ -104,6 +104,52 @@
 			}
 		}
 /*------------------------- id 중복 체크 ------------------------- */
+
+/*------------------------- 주민번호 중복 체크 --------------------   */
+	
+	/* Ajax 사용(중복 ssn Check) */
+	
+	var ssn_c = "no"; 
+	
+	function ssn_check() {
+		
+	var ssn1 = document.getElementById("ssn1").value.trim();
+	var ssn2 = document.getElementById("ssn2").value.trim();
+	var ssn = ssn1 + "-" + ssn2;
+
+	if(ssn1 == "" || ssn2 == ""){
+		alert("주민번호를 입력해주세요.");
+		return;
+	}
+	
+	var url = "ssn_check.do";
+	var param = "ssn="+ssn;
+	
+	sendRequest(url, param, ssn_result, "post");
+	
+	}
+	
+	function ssn_result() {
+		if(xhr.readyState == 4 && xhr.status == 200){
+			var data = xhr.responseText;
+			
+			if(data == "no"){
+				alert("이미 가입이 되어있는 주민번호 입니다.");
+				ssn_c= "no";
+				return;
+			}
+			
+			if(data == "yes"){
+				alert("사용 가능한 주민번호 입니다.");
+				ssn_c = "yes";
+				return;
+			}
+		}
+	}
+	
+
+/*------------------------- 주민번호 중복 체크 --------------------   */
+		
 /*----------------------- 비밀번호 type 변경 ----------------------- */
 	var on_off = 'on';
 		
@@ -123,7 +169,9 @@
 		}
 
 	}
+	
 /*----------------------- 비밀번호 type 변경 ----------------------- */
+
 /*------------------------- 회원가입 ------------------------- */
 	
 	//회원 정보 추가
@@ -138,8 +186,6 @@
 			var email = f.email1.value.trim() +"@"+ f.email2.value.trim();
 		 	var postcode = f.postcode.value;
 			var addr =  f.roadAddr.value +"/"+f.detailAddr.value.trim();  
-		 	
-			alert(postcode);
 			
 			//아이디
 			if(id == ""){
@@ -175,6 +221,12 @@
 			var pattern = /^(?:[0-9]{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[1,2][0-9]|3[0,1]))-[1-4][0-9]{6}$/;			
 			if(!pattern.test(ssn)){
 				alert("주민번호 13자리를 입력해주세요.");
+				return;
+			}
+			
+			//주민번호 중복체크
+			if(ssn_c == 'no'){
+				alert("주민번호 중복체크를 해주세요.");
 				return;
 			}
 			
@@ -262,7 +314,8 @@
 				</tr>
 				<tr>
 					<th> 주민번호 : </th>
-					<td><input type = "text" class = "ssn" name = "ssn1" size = "5" maxlength="6"> - <input type = "password" class = "ssn" name = "ssn2" size = "7" maxlength="7"></td>
+					<td><input type = "text" class = "ssn" id = "ssn1" name = "ssn1" size = "5" maxlength="6"> - <input type = "password" class = "ssn" id = "ssn2" name = "ssn2" size = "7" maxlength="7"></td>
+					<td><input type = "button" id = "c_ssn" name = "c_ssn" value = "확인" onclick = "ssn_check();"></td>
 				</tr>
 				<tr>
 					<th> 전화번호 : </th>

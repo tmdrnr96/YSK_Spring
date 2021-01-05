@@ -50,7 +50,7 @@
 				<c:if test="${ !empty list }">
 					<c:forEach var="vo" items="${ list }">
 						<tr>
-							<td>${vo.sysdate}</td>				
+							<td>${vo.usedate}</td>				
 							<td>${vo.content}</td>				
 							<td>${vo.deposit}</td>				
 							<td>${vo.withdraw}</td>	

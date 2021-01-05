@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import common.MyCommon;
 import dao.BankDAO;
+import dao.DetailDAO;
 import vo.BankVO;
+import vo.DetailVO;
 
 
 @Controller
@@ -158,6 +160,56 @@ public class BankController {
 		
 		return result;
 	}
+	
+	//거래내역(상세보기)
+
+	@Autowired
+	DetailDAO detail_dao;
+		
+	@RequestMapping("/view.do")
+	public String bank_view(int idx, Model model) {
+
+		BankVO vo = bdao.all_selectOne(idx);
+		
+		if (vo != null) {
+			//idx에 해당되는 객체를 정상적으로 가져온 경우
+			model.addAttribute("vo",vo);
+		}
+	
+		if (vo==null) {			
+			System.out.println("정보 없음");
+		}
+		
+		return MyCommon.Detail.VIEW_PATH + "bank_view.jsp";
+	}
+	
+	
+	@RequestMapping("/det.do")
+	public String bank_detail(Model model) {
+		List<DetailVO> list = detail_dao.selectView();	
+		model.addAttribute("list", list);
+		return MyCommon.Detail.VIEW_PATH+ "bank_detail.jsp";
+	}
+
+	
+	
+	@RequestMapping("/detail_view.do")
+	public String detail_view(Model model, int detail) {
+		
+		//사원목록 조회
+		List<DetailVO> list=null;
+		
+		if (detail == 0) {
+			list = detail_dao.selectView();
+		} else {
+			list = detail_dao.selectView(detail);
+		}
+				
+		model.addAttribute("list", list);
+		
+		return MyCommon.Detail.VIEW_PATH + "bank_detail.jsp";
+	}
+	
 	
 	
 

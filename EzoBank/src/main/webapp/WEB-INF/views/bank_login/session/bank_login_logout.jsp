@@ -130,6 +130,11 @@
 		
 		function withdrawal(idx) {
 			
+			if(idx == ''){
+				alert("로그인 후 이용해 주세요.");
+				location.href = "login.do";
+			}
+			
 			var f = document.post;
 			
 			f.idx.value = idx;
@@ -142,6 +147,11 @@
 		}
 		function m_transfer(idx) {
 
+			if(idx == ''){
+				alert("로그인 후 이용해 주세요.");
+				location.href = "login.do";
+			}
+			
 			var f = document.post;
 			
 			f.idx.value = idx;
@@ -152,7 +162,24 @@
 			
 			//location.href="transfer_page.do?idx="+n;//이체
 		}
-
+		
+		//통장 잔액 확인
+		function detail(idx) {
+			
+			if(idx == ''){
+				alert("로그인 후 이용해 주세요.");
+				location.href = "login.do";
+			}
+			
+			var f = document.post;
+			
+			f.idx.value = idx;
+			
+			f.action = "view.do";
+			f.method = "post";
+			f.submit();
+		}
+		
 		</script>
 	</head>
 	<body>
@@ -184,8 +211,7 @@
 						<li><a class = "loglink" href = "javascript:deposit('${user.idx}');">입금</a></li>
 						<li><a class = "loglink" href = "javascript:withdrawal('${user.idx}');">출금</a></li>
 						<li><a class = "loglink" href = "javascript:m_transfer('${user.idx}');">이체</a></li>
-						<li><a class = "loglink" href = "#">거래 내역</a></li>
-						<li><a class = "loglink" href = "#">잔액 조회</a></li>								
+						<li><a class = "loglink" href = "javascript:detail('${user.idx}')">잔액 조회</a></li>								
 					</ul>	
 				</li>
 				<li><a class="loglink" href="javascript:user_info_update('${user.idx}');">회원정보수정</a></li>

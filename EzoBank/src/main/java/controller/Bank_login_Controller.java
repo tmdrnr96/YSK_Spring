@@ -83,6 +83,22 @@ public class Bank_login_Controller {
 		return res;	
 	}
 	
+	//주민번호 중복 확인
+	@RequestMapping("/ssn_check.do")
+	@ResponseBody
+	public String ssn_check(String ssn) {
+		
+		BankVO bankvo = bank_dao.ssn_selectOne(ssn);
+		
+		String res = "no";
+		
+		if(bankvo == null) {
+			res = "yes";
+		}
+		return res;
+		
+	}
+	
 	//회원 가입
 	@RequestMapping("/insert.do")
 	@ResponseBody

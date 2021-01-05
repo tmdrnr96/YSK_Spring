@@ -9,6 +9,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select id from bank where id=#{id}
 	</select>
 	
+	<!--주민번호 중복체크 -->
+	<select id="back_ssn_check" parameterType="java.lang.String" resultType="vo.BankVO">
+		select * from bank where ssn=#{ssn}
+	</select>
+	
 	<!--계정 추가  -->
 	<insert id="bank_account_insert" parameterType="vo.BankVO">
 		insert into bank values(bank_seq_idx.nextval, #{name}, #{ssn}, #{tel}, #{email}, #{addr}, #{id}, #{pwd}, #{account}, 0, #{ip}, sysdate, #{postcode})
@@ -40,7 +45,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	
-	
+	<!-- 입금 / 출금  -->
 	<select id="bank_list" resultType="bank">
 		select * from bank
 	</select>
@@ -60,6 +65,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="update_withdrawal" parameterType="java.util.Map">
 		update bank set balance = balance - #{amount} where idx=#{idx}
 	</update>
+	
+	<!-- 상세보기  -->
+	
+	<select id="bank_all" resultType="vo.BankVO" parameterType="int">	
+		select * from bank where idx = #{idx}		
+	</select>
+	
+	<select id="bank_detail" resultType="vo.BankVO" parameterType="int">
+		select * from bank where idx = #{idx}
+	</select>
 	
 </mapper>
 

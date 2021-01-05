@@ -12,8 +12,8 @@
 		<typeAlias type="vo.BankVO" alias="bank"/>
 	</typeAliases>
 	
-	<!-- dept.xml 맵퍼를 참조한다. -->
 	<mappers>
 		<mapper resource="config/mybatis/mapper/bank.xml"/>
+		<mapper resource="config/mybatis/mapper/detail.xml" />		
 	</mappers>
 </configuration>

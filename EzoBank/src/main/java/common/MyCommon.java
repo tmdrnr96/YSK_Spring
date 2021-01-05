@@ -25,4 +25,9 @@ public class MyCommon {
 	public static class Transfer{
 		public static final String VIEW_PATH = "/WEB-INF/views/transfer/";
 	}
+	
+	//상세보기
+	public static class Detail{
+		public static final String VIEW_PATH = "/WEB-INF/views/bank/";
+	}
 }

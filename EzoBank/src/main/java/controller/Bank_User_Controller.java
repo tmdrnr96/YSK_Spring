@@ -96,4 +96,11 @@ public class Bank_User_Controller {
 		return result;
 	}
 	
+	//회사 소개 페이지로 이동
+	@RequestMapping("/bank_introduce.do")
+	public String bank_introduce() {
+		
+		return "/WEB-INF/views/bank_introduce/bank_introduce_form.jsp";
+	}
+	
 }

@@ -137,6 +137,12 @@
 				<input type="button" value="출금" onclick="withdrawal('${vo.idx}');"><br><br>
 				<a href="main.do?idx=${ vo.idx }" style="text-decoration: none;">나가기</a>
 			</div>
+		
+		<footer>
+			<div id = "footer" align="center">
+				<%@include file="../footer/bank_footer.jsp"%>
+			</div>
+		</footer>
 
 	</body>
 </html>

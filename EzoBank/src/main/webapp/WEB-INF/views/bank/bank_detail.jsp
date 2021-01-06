@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<%@ include file= "../bank_login/session/bank_login_logout.jsp" %>
 <title>상세보기</title>
 	<script type="text/javascript">
 	

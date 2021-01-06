@@ -2,6 +2,7 @@
 
 body{background-image: url(resources/img/bank_building.jpg);
   	background-size: cover; 
+  	height: 1000px;
   	  }
   	  
 .box{
@@ -99,3 +100,13 @@ body{background-image: url(resources/img/bank_building.jpg);
 .box input[type = "button"]:hover{
   background: #2ecc71;
 }
+
+#footer{	
+	  width: 100%;
+	  height:70px;
+	  position: absolute;
+	  top: 1000px;
+	  left: 50%; 
+	  transform: translate(-50%,-50%);
+	  bottom:0;
+} 

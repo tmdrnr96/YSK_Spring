@@ -12,7 +12,9 @@
 		body{
 		  background-image: url(resources/img/bank_building.jpg);
   		  background-size: cover;
-		}
+		} 
+		
+		
 		</style>
 		
 		
@@ -69,40 +71,27 @@
 			</div>
 			<div class = "function2">
 				<ul>
-					<li class = "function2"><a href = "#"><img class = "bank_image2" alt="EzoBank" src="${pageContext.request.contextPath}/resources/img/bank.png" width = "100px;" height="100px;">
-							EzoBank
+					<li class = "function2"><a href = "#"><img class = "bank_image2" alt="EzoBank" src="${pageContext.request.contextPath}/resources/img/bank_event_board.png" width = "100px;" height="100px;">
+							이벤트
 						</a>
 					</li>
-					<li class = "function2"><a href = "#"><img class = "bank_image2" alt="EzoBank" src="${pageContext.request.contextPath}/resources/img/bank.png" width = "100px;" height="100px;">
-							EzoBank
+					<li class = "function2"><a href = "#"><img class = "bank_image2" alt="EzoBank" src="${pageContext.request.contextPath}/resources/img/bank_board.png" width = "100px;" height="100px;">
+							게시판
 						</a>
 					</li>					
 					<li class = "function2"><a href = "join_form.do"><img class = "bank_image2" alt="EzoBank" src="${pageContext.request.contextPath}/resources/img/join.png" width = "100px;" height="100px;">
 							계좌생성
 						</a>
 					</li>
-					<li class = "function2"><a href = "#"><img class = "bank_image2" alt="EzoBank" src="${pageContext.request.contextPath}/resources/img/bank.png" width = "100px;" height="100px;">
+					<li class = "function2"><a href = "bank_introduce.do"><img class = "bank_image2" alt="EzoBank" src="${pageContext.request.contextPath}/resources/img/bank.png" width = "100px;" height="100px;">
 							EzoBank
 						</a>
 					</li>
 				</ul>
 			</div>
 		</div>
-		
-		<footer>
-			<div id = "footer" align="center">
-				<%@include file="../footer/bank_footer.jsp"%>
-			</div>
-		</footer>
+		<div id = "footer"  align="center">
+			<%@include file="../footer/bank_footer.jsp"%>
+		</div>		
 	</body>		
-		
-    <!-- <div class="greeting">
-        <h1>환영합니다.<br>EzoBank 입니다.</h1>
-    </div>
-    
-    
-    <div class="other_buttons">
-        <span><a href="#" class="main_btn">이체 및 송금</a></span>
-        <span><a href="#" class="main_btn">이조뱅크에 대해서</a></span>
-    </div>  -->
 </html>

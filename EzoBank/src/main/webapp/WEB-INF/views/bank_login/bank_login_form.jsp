@@ -115,5 +115,9 @@
 				  <a class = "j" href = "join_form.do;"> EzoBank 회원 가입 </a>	
 			</div>
 		</div>
+		
+		<div id = "footer" align="center">
+			<%@include file="../footer/bank_footer.jsp"%>
+		</div>		
 	</body>
 </html>

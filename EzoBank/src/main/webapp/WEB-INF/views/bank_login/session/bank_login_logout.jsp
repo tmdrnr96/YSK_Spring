@@ -194,7 +194,7 @@
 	<div class = "title">		
 		<ul class = "submenu" style="display: inline;">
 			<li><a class="loglink" href = "login.do;">로그인</a></li>		
-			<li><a class="loglink" href="#">이조뱅크?</a></li>			
+			<li><a class="loglink" href="bank_introduce.do">이조뱅크?</a></li>			
 		</ul>			
 	</div>	
 	</c:if>

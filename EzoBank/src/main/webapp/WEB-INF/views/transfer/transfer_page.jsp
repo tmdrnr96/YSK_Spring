@@ -130,5 +130,11 @@
 			<a href="main.do" style="text-decoration: none;">나가기</a>
 			
 		</div>
+		
+		<footer>
+			<div id = "footer" align="center">
+				<%@include file="../footer/bank_footer.jsp"%>
+			</div>
+		</footer>
 	</body>
 </html>

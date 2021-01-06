@@ -131,5 +131,11 @@
 			<input type="button" value="확인" onclick="deposit('${voMe.idx}','${ voYou.idx }');"><br><br>
 			<a href="transfer_page.do?idx=${ voMe.idx }" style="text-decoration: none;">뒤로가기</a>
 		</div>
+		
+		<footer>
+			<div id = "footer" align="center">
+				<%@include file="../footer/bank_footer.jsp"%>
+			</div>
+		</footer>
 	</body>
 </html>

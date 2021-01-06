@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/view.css">
@@ -16,11 +17,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap" rel="stylesheet">
+
 <style type="text/css">
 	.box{
 		background-image: url("https://imagescdn.gettyimagesbank.com/500/201607/a10517270.jpg");
-	 	 background-position: center;
-            background-size: cover;
+	 	background-position: center;
+        background-size: cover;
 	 	
 	 	width: 500px;
 	 	height: 300px;
@@ -83,22 +85,21 @@
 
 </head>
 <body>
+<%-- <%@ include file= "../bank_login/session/bank_login_logout.jsp" %> --%>
 <form>
 
 	<div class="box">
 	
-	<%-- <c:forEach var="list" items="${vo}"> --%>
 	 	<p id="title"> 입출금 계좌 </p>
 	 	<input type = "hidden" value = ${vo.idx} name = "idx">
-	 	<div id="content">
-	 	
-		<p id="con1"> 계좌번호 : ${vo.account }</p>
-		<p id="con3"> 잔액 : ${vo.balance} 원</p>
-		<p id="con2"> ${vo.name} 통장</p>
-		<input id="det" type="button" value="상세정보" onclick="detail(this.form);"> 
-		
-		</div>
-	<%-- </c:forEach> --%>
+		 	<div id="content">
+			 	
+				<p id="con1"> 계좌번호 : ${vo.account }</p>
+				<p id="con3"> 잔액 : ${vo.balance} 원</p>
+				<p id="con2"> ${vo.name} 통장</p>
+				<input id="det" type="button" value="상세정보" onclick="detail(this.form);"> 
+			
+			</div>
 		
 	</div>
 	

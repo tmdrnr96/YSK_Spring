@@ -63,21 +63,21 @@
 			<div class="slideshow-container">
 			
 				<div class="mySlides" style="display: block;">			
-					<a href = "#">
+					<a href = "javascript:m_transfer('${user.idx}');">
 						<img class="main_slideImg" src="${pageContext.request.contextPath}/resources/img/sample1.jpg"
 						 width="250px;" height="150px;">
 					</a>
 				</div>
 				
 				<div class="mySlides">	
-					<a href = "#">		
+					<a href = "join_form.do">		
 						<img class="main_slideImg" src="${pageContext.request.contextPath}/resources/img/sample2.jpg"
 						 width="250px;" height="150px;">
 					</a>
 				</div>
 	
 				<div class="mySlides">	
-					<a href = "#">		
+					<a href = "bank_introduce.do">		
 						<img class="main_slideImg" src="${pageContext.request.contextPath}/resources/img/sample3.jpg"
 						 width="250px;" height="150px;">
 					</a>

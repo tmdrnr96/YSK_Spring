@@ -242,5 +242,9 @@
 			</div>
 		</form>	
 		
+		<div id = "footer" align="center">
+			<%@include file="../footer/bank_footer.jsp"%>
+		</div>
+		
 	</body>
 </html>

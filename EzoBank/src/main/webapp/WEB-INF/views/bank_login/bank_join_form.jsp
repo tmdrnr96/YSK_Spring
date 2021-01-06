@@ -284,7 +284,7 @@
 /*------------------------- 회원가입 ------------------------- */				
 		</script>		
 	</head>
-	<body>	 
+	<body id = "sign_box">	 
 		<div class="login" align="center">
 			<jsp:include page="../bank_login/session/bank_login_logout.jsp"/>
 		</div>
@@ -365,5 +365,10 @@
 				<input class = "btn" type = "button" value = "취소" onclick="history.go(-1);">
 			</div>
 		</form>
+
+			<div id = "footer" align="center">
+				<%@include file="../footer/bank_footer.jsp"%>
+			</div>
+		
 	</body>
 </html>

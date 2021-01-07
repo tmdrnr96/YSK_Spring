@@ -71,12 +71,12 @@
 			</div>
 			<div class = "function2">
 				<ul>
-					<li class = "function2"><a href = "#"><img class = "bank_image2" alt="EzoBank" src="${pageContext.request.contextPath}/resources/img/bank_event_board.png" width = "100px;" height="100px;">
-							이벤트
+					<li class = "function2"><a href = "board_list.do"><img class = "bank_image2" alt="EzoBank" src="${pageContext.request.contextPath}/resources/img/bank_board.png" width = "100px;" height="100px;">
+							Q&A
 						</a>
 					</li>
-					<li class = "function2"><a href = "#"><img class = "bank_image2" alt="EzoBank" src="${pageContext.request.contextPath}/resources/img/bank_board.png" width = "100px;" height="100px;">
-							게시판
+					<li class = "function2"><a href = "notice_list.do"><img class = "bank_image2" alt="EzoBank" src="${pageContext.request.contextPath}/resources/img/bank_event_board.png" width = "100px;" height="100px;">
+							공지사항(이벤트)
 						</a>
 					</li>					
 					<li class = "function2"><a href = "join_form.do"><img class = "bank_image2" alt="EzoBank" src="${pageContext.request.contextPath}/resources/img/join.png" width = "100px;" height="100px;">

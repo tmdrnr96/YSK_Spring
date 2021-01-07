@@ -24,21 +24,8 @@ public class BankController {
 	@Autowired
 	BankDAO bdao; //bank table DAO
 	
-	//메인페이지
-	//@RequestMapping(value= {"/","/main_page.do"})
-	//public String main_page() {
-	//	return MyCommon.MainPage.VIEW_PATH + "main_page.jsp";
-	//}
-	
-	
-	//로그인을 완료했으면 idx를 파라미터로 반드시 받아야 함
-	//로그인을 하지 않고 클릭하면 로그인 페이지로 이동해야 함
-	//@RequestMapping("/account_info.do")
-	//public String account_info(Model model) {
-	//	BankVO vo = bdao.selectone(1);
-	//	model.addAttribute("vo",vo);
-	//	return MyCommon.Account.VIEW_PATH + "account_info_page.jsp";
-	//}
+	@Autowired
+	DetailDAO detaildao; //detail table DAO
 	
 	//입금 페이지
 	//로그인을 완료했으면 idx를 파라미터로 반드시 받아야 함
@@ -71,11 +58,13 @@ public class BankController {
 		if(check==1) { // 이 부분에서 accountIfo table에 data넣기(계좌 상세보기, 의미X)
 			//입금 mapper
 			res = bdao.update_deposit(idx, amount);
-			
+		
 		}
 		else{
 			//출금 mapper
 			res = bdao.update_withdrawal(idx, amount);
+			
+			//거래내역에 쓰일 DB 추가
 		}
 		
 		if(res>0) {
@@ -137,6 +126,8 @@ public class BankController {
 		BankVO voMe = bdao.selectone(idxMe);
 		model.addAttribute("voMe",voMe);
 		
+		//거래내역에 쓰일 DB 추가
+		
 		BankVO voYou = bdao.selectone(idxYou);
 		model.addAttribute("voYou",voYou);
 		
@@ -166,7 +157,7 @@ public class BankController {
 	@Autowired
 	DetailDAO detail_dao;
 		
-	@RequestMapping("/view.do")
+	@RequestMapping("/aac_view.do")
 	public String bank_view(int idx, Model model) {
 
 		BankVO vo = bdao.all_selectOne(idx);
@@ -196,7 +187,7 @@ public class BankController {
 	@RequestMapping("/detail_view.do")
 	public String detail_view(Model model, int detail) {
 		
-		//사원목록 조회
+		//거래내역 조회
 		List<DetailVO> list=null;
 		
 		if (detail == 0) {

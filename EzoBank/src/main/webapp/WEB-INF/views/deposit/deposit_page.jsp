@@ -46,7 +46,7 @@
 				
 				/* 입금 성공여부를 알 수 있는 Ajax */
 				var url = "depositandwithdraw.do";
-				var param = "idx="+idx+"&amount="+amount+"&check=1";
+				var param = "idx="+idx+"&amount="+amount+"&check=1"+"&account"+account+"&balance"+balance;
 				sendRequest(url,param,resultFn,"post");
 			}
 			
@@ -100,7 +100,9 @@
 				location.href="login.do";
 			</script>
 		</c:if> 
-	
+		<input type = "hidden" id = "account" value = "${user.account}">
+		<input type = "hidden" id = "balance" value = "${user.balance}">
+		
    	 <div align="center" class="num">
 			<h1>:::입금:::</h1>
 			<p style="color: white">${ vo.name }님 계좌에 입금하실 금액을 입력해주세요</p>

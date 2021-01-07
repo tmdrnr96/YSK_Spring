@@ -175,7 +175,7 @@
 			
 			f.idx.value = idx;
 			
-			f.action = "view.do";
+			f.action = "aac_view.do";
 			f.method = "post";
 			f.submit();
 		}

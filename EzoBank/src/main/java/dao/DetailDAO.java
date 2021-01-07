@@ -13,7 +13,8 @@ public class DetailDAO {
 
 	@Autowired
 	SqlSession sqlSession;
-
+		
+		//전체조회
 	    public List<DetailVO> selectView(){
 		List<DetailVO> list = sqlSession.selectList("d.detail");
 		return list;
@@ -25,4 +26,12 @@ public class DetailDAO {
 		return list;
 		}
 	
+	    //계좌 입금, 출금, 이체 시에 데이터 저장
+		public int insert_detail(DetailVO vo) {
+			
+		int res = sqlSession.insert("d.detail_insert",vo);
+					
+			return res;
+		}
+		
 }

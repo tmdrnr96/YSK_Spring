@@ -10,10 +10,14 @@
 	
 	<typeAliases>
 		<typeAlias type="vo.BankVO" alias="bank"/>
+		<typeAlias type="vo.BoardVO" alias="board"/>
+		<typeAlias type="vo.NoticeVO" alias="notice"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="config/mybatis/mapper/bank.xml"/>
-		<mapper resource="config/mybatis/mapper/detail.xml" />		
+		<mapper resource="config/mybatis/mapper/board.xml"/>	
+		<mapper resource="config/mybatis/mapper/notice.xml"/>	
+		<mapper resource="config/mybatis/mapper/detail.xml"/>	
 	</mappers>
 </configuration>

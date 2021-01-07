@@ -2,13 +2,21 @@ package vo;
 
 public class DetailVO {
 
-	private String account;
-	private String content;
-	private int deposit;
-	private int withdraw;
-	private int balance;
-	private String usedate;
+	private String account;//계정
+	private String content;//항목 이름
+	private int deposit;//입금
+	private int withdraw;//출금
+	private int balance;//잔액
+	private String usedate;//날짜
+	private int det;//항목 번호
 	
+		
+	public int getDet() {
+		return det;
+	}
+	public void setDet(int det) {
+		this.det = det;
+	}
 	public String getAccount() {
 		return account;
 	}

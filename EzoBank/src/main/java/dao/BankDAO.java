@@ -103,8 +103,7 @@ public class BankDAO {
 		return res;
 	}
 	
-	//상세보기
-	
+	//상세보기	
 	//bank 안의 내용 출력
 		public BankVO all_selectOne(int idx){
 			BankVO vo = sqlSession.selectOne("bank.bank_all",idx);

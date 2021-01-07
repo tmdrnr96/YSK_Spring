@@ -15,6 +15,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	 		select * from detail where det = #{det}
   	</select>
 	
+	<insert id="detail_insert" parameterType="vo.DetailVO">
+		insert into detail values(#{account}, #{content},#{deposit},#{withdraw},#{balance},sysdate,#{det})
+	
+	</insert>
+	
 </mapper>
 
 

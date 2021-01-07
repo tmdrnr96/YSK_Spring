@@ -4,27 +4,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
 <%@ include file= "../bank_login/session/bank_login_logout.jsp" %>
+<meta charset="UTF-8">
 <title>상세보기</title>
+<link href="${ pageContext.request.contextPath}/resources/css/detail.css?after" rel="stylesheet">
 	<script type="text/javascript">
 	
 		function find() {
-			var detail = document.getElementById("detail").value;
-			location.href="list.do?detail="+detail;		
+			var detail = document.getElementById("det").value;
+			//alert(detail);
+			location.href="detail_view.do?detail="+detail;		
 		}
 	
 	</script>
+	<style type="text/css">
+	
+	body{
+    background-image: url(resources/img/bank_building.jpg);
+    background-size: cover;
+    height: 1000px;
+	}
+	
+	
+	
+	</style>
+	
 </head>
 <body>
 	
-	<div align="center">
-			상세보기
+	<div align="center" class="box">
+	
+		<div>
+			<h1>계좌 입∙출금 내역</h1>
+			
+			<div class="choice">
 			<select id="det">
-				<option value="0">항목을 선택하십시오 </option>
+				<option value="0">계좌를 선택하십시오 </option>
 				<option value="10">입∙출금 계좌</option>
 				<option value="20">적금</option>
 			</select>
+			</div>
 			
 			<input type="button" value="검색" onclick="find();">
 			
@@ -61,6 +80,11 @@
 				</c:if>	
 		
 		</table>
-
+		
+		<a href="main.do?idx=${ vo.idx }" style="text-decoration: none;">나가기</a>
+</div>
+	<div id = "footer"  align="center">
+			<%@include file="../footer/bank_footer.jsp"%>
+		</div>
 </body>
 </html>

@@ -347,7 +347,7 @@
 				</tr>
 				<tr>
 					<td colspan = "3" align = "center">
-						<textarea id = "txt" rows="10" cols="65" disabled="disabled">${content}</textarea>
+						<textarea id = "txt" rows="10" cols="65" disabled="disabled" style="resize: none;">${content}</textarea>
 					</td>				
 				</tr>
 				<tr>

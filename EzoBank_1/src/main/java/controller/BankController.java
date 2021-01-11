@@ -201,6 +201,7 @@ public class BankController {
 	}
 	
 	
+	//거래내역 상세보기
 	@RequestMapping("/det.do")
 	public String bank_detail(Model model, String account, Integer page, int term) {
 				
@@ -324,12 +325,6 @@ public class BankController {
 				"det.do", nowPage, row_total, 
 				Common.BoardView.BLOCKLIST, 
 				Common.BoardView.BLOCKPAGE);
-		
-		
-		
-		
-		
-		
 		
 		model.addAttribute("pageMenu", pageMenu);
 		//여기서는 페이지 관련된 처리를 전혀 안하고 있어서 그렇습니다~

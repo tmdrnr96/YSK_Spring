@@ -102,6 +102,7 @@
 				  color: #000;
 				  background-color: #fff;}
 		}
+
 					
 		</style>
 		
@@ -197,6 +198,11 @@
 			f.submit();
 		}
 		
+		function time(vo){
+
+			location.href = "time.do";
+		}
+		
 		</script>
 	</head>
 	<body>
@@ -238,7 +244,7 @@
 					<li><span id = "login"><span id = "user_name">${user.name}</span>님 안녕하세요.</span></li>
 					<li>
 						<span id = "login">자동 로그아웃 <span id = "user_name">30초</span> &nbsp;</span>
-					    <a id = "t_continue" href = "#" >연장</a>
+					    <a id = "t_continue" href = "javascript:time();" >연장</a>
 				   </li>			
 				</ul>
 			</div>

@@ -308,37 +308,6 @@ public class BankController {
 		return MyCommon.Detail.VIEW_PATH+ "bank_detail.jsp";
 			
 	}
-
-	/*
-	 * @RequestMapping("/detail_view.do") public String detail_view(Model model,
-	 * String account, int term,Integer page ) {
-	 * 
-	 * int nowPage = 1; //기본페이지는 1페이지로
-	 * 
-	 * if (page != null) { nowPage = page; }
-	 * 
-	 * //한 페이지에 표시될 게시물의 시작과 끝번호를 계산 int start = (nowPage -
-	 * 1)*Common.BoardView.BLOCKLIST +1; int end = start +
-	 * Common.BoardView.BLOCKLIST -1;
-	 * 
-	 * DetailVO vo = new DetailVO();
-	 * 
-	 * vo.setStart(start); vo.setEnd(end); vo.setAccount(account);
-	 * 
-	 * List<DetailVO> list = detail_dao.selectList(vo);
-	 * 
-	 * //전체 게시물의 갯수 int row_total = detail_dao.getRowTotal(account);
-	 * 
-	 * String pageMenu = Paging.getPaging( "detail_view.do", nowPage, row_total,
-	 * Common.BoardView.BLOCKLIST, Common.BoardView.BLOCKPAGE );
-	 * 
-	 * model.addAttribute("list", list); model.addAttribute("pageMenu", pageMenu);
-	 * //여기서는 페이지 관련된 처리를 전혀 안하고 있어서 그렇습니다~ //여기서 페이지 메뉴 만들면 되겠네요~ 위에 det.do처럼요!! 네
-	 * 알겠습니다 //넵 화이팅! //List<DetailVO>s_list=null;
-	 * 
-	 * return MyCommon.Detail.VIEW_PATH + "bank_detail.jsp"; }
-	 */
-	
 	
 	
 

@@ -247,6 +247,27 @@ public class Bank_login_Controller {
 		return res;
 	}
 	
+	public String time(){
+		
+		final Thread thread = new Thread() {
+			
+			@Override
+			public void run() {
+				for(int i = 3600; i <= 0; i--) {
+					try {
+						thread.sleep(1000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				super.run();
+			}
+		};
+		
+		return "";
+	}
+	
 	
 	//로그아웃
 	@RequestMapping("/logout.do")
@@ -261,6 +282,18 @@ public class Bank_login_Controller {
 	public String main() {		
 		return "/WEB-INF/views/main/main.jsp";
 	}
+	
+	@RequestMapping("/time.do")
+	public String time_continue(Model model) {
+		
+		//Thread를 사용해서 시간 계산
+		BankVO vo = (BankVO) session.getAttribute("user");
+		sign_up(model, vo);
+		
+		return "/WEB-INF/views/bank_login/bank_join_form.jsp";
+	}
+	
+	
 
 }
 

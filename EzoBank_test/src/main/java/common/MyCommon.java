@@ -31,6 +31,8 @@ public class MyCommon {
 		public static final String VIEW_PATH = "/WEB-INF/views/bank/";
 	}
 	
+	
+	
 	//Q&A 게시판
 	public static class Board{
 				
